@@ -1,0 +1,135 @@
+// src/state/leads/useLeads.ts
+import { createContext, useContext, useMemo } from 'react';
+import type { Lead, LeadStatus, LeadsViewState, SortDir, SortKey } from '@/types/types';
+import {
+  DEFAULT_LEADS_VIEW_STATE,
+  loadLeadsViewState,
+  saveLeadsViewState,
+} from '@/lib/storage';
+
+// -------- Types --------
+export type LoadState =
+  | { kind: 'idle' }
+  | { kind: 'loading' }
+  | { kind: 'loaded' }
+  | { kind: 'error'; message: string };
+
+export interface LeadsState {
+  load: LoadState;
+  leads: Lead[];
+  view: LeadsViewState;
+}
+
+export type LeadsAction =
+  | { type: 'load:start' }
+  | { type: 'load:success'; payload: Lead[] }
+  | { type: 'load:error'; message: string }
+  | { type: 'view:setSearch'; searchTerm: string }
+  | { type: 'view:setStatus'; status: LeadStatus | 'all' }
+  | { type: 'view:setSort'; sortKey: SortKey; sortDir: SortDir }
+  | { type: 'view:select'; leadId: string | null }
+  | { type: 'lead:update'; id: string; patch: Partial<Lead> };
+
+// -------- Init / Reducer --------
+export function getInitialLeadsState(): LeadsState {
+  const persisted = loadLeadsViewState();
+  return {
+    load: { kind: 'idle' },
+    leads: [],
+    view: persisted ?? DEFAULT_LEADS_VIEW_STATE,
+  };
+}
+
+export function leadsReducer(state: LeadsState, action: LeadsAction): LeadsState {
+  switch (action.type) {
+    case 'load:start':
+      return { ...state, load: { kind: 'loading' } };
+    case 'load:success':
+      return { ...state, load: { kind: 'loaded' }, leads: action.payload };
+    case 'load:error':
+      return { ...state, load: { kind: 'error', message: action.message } };
+    case 'view:setSearch':
+      return { ...state, view: { ...state.view, searchTerm: action.searchTerm } };
+    case 'view:setStatus':
+      return { ...state, view: { ...state.view, statusFilter: action.status } };
+    case 'view:setSort':
+      return { ...state, view: { ...state.view, sortKey: action.sortKey, sortDir: action.sortDir } };
+    case 'view:select':
+      return { ...state, view: { ...state.view, selectedLeadId: action.leadId } };
+    case 'lead:update': {
+      const nextLeads = state.leads.map((l) => (l.id === action.id ? { ...l, ...action.patch } : l));
+      return { ...state, leads: nextLeads };
+    }
+    default:
+      return state;
+  }
+}
+
+// Persist view changes (call from Provider effect)
+export function persistLeadsView(view: LeadsViewState) {
+  saveLeadsViewState(view);
+}
+
+// -------- Context + Hooks (no components exported) --------
+export interface LeadsContextValue {
+  state: LeadsState;
+  dispatch: React.Dispatch<LeadsAction>;
+}
+export const LeadsContext = createContext<LeadsContextValue | undefined>(undefined);
+
+export function useLeadsContextStrict(): LeadsContextValue {
+  const ctx = useContext(LeadsContext);
+  if (!ctx) throw new Error('Leads hooks must be used within <LeadsProvider>');
+  return ctx;
+}
+
+export function useLeadsState() {
+  return useLeadsContextStrict().state;
+}
+
+export function useLeadsActions() {
+  const { dispatch } = useLeadsContextStrict();
+  return {
+    setSearch: (searchTerm: string) => dispatch({ type: 'view:setSearch', searchTerm }),
+    setStatusFilter: (status: LeadStatus | 'all') => dispatch({ type: 'view:setStatus', status }),
+    setSort: (sortKey: SortKey, sortDir: SortDir) =>
+      dispatch({ type: 'view:setSort', sortKey, sortDir }),
+    selectLead: (leadId: string | null) => dispatch({ type: 'view:select', leadId }),
+    updateLead: (id: string, patch: Partial<Lead>) =>
+      dispatch({ type: 'lead:update', id, patch }),
+  };
+}
+
+function containsCI(text: string, query: string) {
+  return text.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+}
+
+export function useVisibleLeads(): Lead[] {
+  const {
+    leads,
+    view: { searchTerm, statusFilter, sortKey, sortDir },
+  } = useLeadsState();
+
+  return useMemo(() => {
+    let result = leads;
+
+    if (searchTerm.trim()) {
+      const q = searchTerm.trim();
+      result = result.filter((l) => containsCI(l.name, q) || containsCI(l.company, q));
+    }
+    if (statusFilter !== 'all') {
+      result = result.filter((l) => l.status === statusFilter);
+    }
+    result = [...result].sort((a, b) => {
+      let primary = sortKey === 'score'
+        ? a.score - b.score
+        : a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      if (primary === 0) {
+        primary = a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      }
+      return sortDir === 'asc' ? primary : -primary;
+    });
+
+    return result;
+  }, [leads, searchTerm, statusFilter, sortKey, sortDir]);
+}
