@@ -28,9 +28,9 @@ export default function LeadsTable() {
       </div>
     );
   }
-// TODO: Improve table accessibility with ARIA roles and properties
-// TODO: Add keyboard navigation for rows (arrow keys, enter to select)
+// TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
 // TODO: Fix horizontal scrolling
+// TODO: Add sorting
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-2xl border border-zinc-200">

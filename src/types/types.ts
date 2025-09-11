@@ -1,5 +1,3 @@
-// src/types.ts
-
 // ---- Leads ----
 export type LeadStatus =
   | 'new'
@@ -10,11 +8,11 @@ export type LeadStatus =
 
 export interface Lead {
   id: string;
-  name: string;      // "Ava Stone"
-  company: string;   // "Nimbus LLC"
-  email: string;     // "ava@nimbus.io"
-  source: string;    // "web" | "event" | "referral" | "ads" | etc.
-  score: number;     // 0..100
+  name: string;
+  company: string;
+  email: string;
+  source: string;
+  score: number;
   status: LeadStatus;
 }
 

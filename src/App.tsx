@@ -4,7 +4,10 @@ import Header from '@/components/layout/Header';
 import Card from '@/components/ui/Card';
 import LeadsToolbar from '@/components/leads/LeadsToolbar';
 import LeadsTable from '@/components/leads/LeadsTable';
+import LeadDetailPanel from '@/components/leads/LeadDetailPanel';
+import OpportunitiesTable from '@/components/opps/OpportunitiesTable';
 import { HeroSkeleton, ToolbarSkeleton, TableSkeleton, Skeleton } from '@/components/ui/Skeleton';
+import OpportunitiesProvider from './state/opps/oppsProvider';
 
 function AppContent() {
   const { load } = useLeadsState();
@@ -68,20 +71,23 @@ function AppContent() {
         <aside className="lg:col-span-1">
           <Card className="p-4">
             <h2 className="text-sm font-semibold text-zinc-900">Opportunities</h2>
-            <p className="mt-1 text-sm text-zinc-600">
-              This table will populate when you convert a lead.
-            </p>
+            <div className="mt-3" />
+            <OpportunitiesTable />
           </Card>
         </aside>
+
       </section>
+      <LeadDetailPanel />
     </main>
   );
 }
 
 export default function App() {
   return (
-    <LeadsProvider>
-      <AppContent />
-    </LeadsProvider>
+    <OpportunitiesProvider>
+      <LeadsProvider>
+        <AppContent />
+      </LeadsProvider>
+    </OpportunitiesProvider>
   );
 }
