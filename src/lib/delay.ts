@@ -25,13 +25,16 @@ export async function simulateNetworkLatency(
     maxDelayMs = 900,
     failureProbability = 0,
     randomFn = Math.random,
-    errorFactory = () => new Error('Simulated network error'),
+    errorFactory = () => new Error("Simulated network error"),
   } = options;
 
   const delay =
-    typeof fixedDelayMs === 'number'
+    typeof fixedDelayMs === "number"
       ? Math.max(0, fixedDelayMs)
-      : Math.max(0, Math.floor(minDelayMs + (maxDelayMs - minDelayMs) * randomFn()));
+      : Math.max(
+          0,
+          Math.floor(minDelayMs + (maxDelayMs - minDelayMs) * randomFn())
+        );
 
   await wait(delay);
 

@@ -1,102 +1,902 @@
 [
-  { "id": "L-001", "name": "Ava Stone", "company": "Nimbus LLC", "email": "ava.stone@nimbus.io", "source": "web", "score": 86, "status": "new" },
-  { "id": "L-002", "name": "Liam Carter", "company": "Skyline Inc", "email": "liam.carter@skyline.com", "source": "event", "score": 73, "status": "contacted" },
-  { "id": "L-003", "name": "Sophia Hughes", "company": "Vertex Solutions", "email": "sophia@vertex.solutions", "source": "referral", "score": 92, "status": "qualified" },
-  { "id": "L-004", "name": "Ethan Morgan", "company": "Bluewave Tech", "email": "ethan.morgan@bluewave.tech", "source": "ads", "score": 65, "status": "unqualified" },
-  { "id": "L-005", "name": "Olivia Bennett", "company": "Aurora Systems", "email": "olivia.bennett@aurora.io", "source": "web", "score": 78, "status": "contacted" },
-  { "id": "L-006", "name": "Noah Phillips", "company": "QuantumSoft", "email": "noah.phillips@quantumsoft.com", "source": "referral", "score": 84, "status": "new" },
-  { "id": "L-007", "name": "Isabella Turner", "company": "Everest Corp", "email": "isabella.turner@everest.co", "source": "event", "score": 91, "status": "qualified" },
-  { "id": "L-008", "name": "James Parker", "company": "SummitWorks", "email": "james.parker@summitworks.com", "source": "ads", "score": 59, "status": "unqualified" },
-  { "id": "L-009", "name": "Mia Rivera", "company": "CloudEdge", "email": "mia.rivera@cloudedge.io", "source": "web", "score": 74, "status": "contacted" },
-  { "id": "L-010", "name": "William Adams", "company": "NextGen Labs", "email": "william.adams@nextgenlabs.com", "source": "referral", "score": 97, "status": "qualified" },
-  { "id": "L-011", "name": "Charlotte Foster", "company": "Brightpath Ltd", "email": "charlotte.foster@brightpath.com", "source": "event", "score": 82, "status": "new" },
-  { "id": "L-012", "name": "Benjamin Gray", "company": "Ironclad Tech", "email": "ben.gray@ironclad.tech", "source": "ads", "score": 68, "status": "unqualified" },
-  { "id": "L-013", "name": "Amelia Watson", "company": "NovaCore", "email": "amelia.watson@novacore.io", "source": "web", "score": 89, "status": "qualified" },
-  { "id": "L-014", "name": "Lucas Cooper", "company": "Solaris Group", "email": "lucas.cooper@solaris.group", "source": "referral", "score": 72, "status": "contacted" },
-  { "id": "L-015", "name": "Harper Brooks", "company": "ZenithWorks", "email": "harper.brooks@zenithworks.com", "source": "event", "score": 77, "status": "contacted" },
-  { "id": "L-016", "name": "Elijah Price", "company": "Hyperion Labs", "email": "elijah.price@hyperion.io", "source": "ads", "score": 64, "status": "unqualified" },
-  { "id": "L-017", "name": "Abigail King", "company": "Starlight Inc", "email": "abigail.king@starlight.com", "source": "web", "score": 95, "status": "qualified" },
-  { "id": "L-018", "name": "Henry Scott", "company": "Orion Systems", "email": "henry.scott@orion.systems", "source": "referral", "score": 83, "status": "new" },
-  { "id": "L-019", "name": "Emily Cox", "company": "AetherWorks", "email": "emily.cox@aether.works", "source": "event", "score": 76, "status": "contacted" },
-  { "id": "L-020", "name": "Daniel Ward", "company": "Horizon Tech", "email": "daniel.ward@horizontech.io", "source": "ads", "score": 66, "status": "unqualified" },
-  { "id": "L-021", "name": "Ella Ramirez", "company": "LumenSoft", "email": "ella.ramirez@lumensoft.com", "source": "web", "score": 88, "status": "qualified" },
-  { "id": "L-022", "name": "Sebastian Howard", "company": "Stratosphere Inc", "email": "sebastian.howard@stratosphere.com", "source": "referral", "score": 79, "status": "contacted" },
-  { "id": "L-023", "name": "Grace Mitchell", "company": "Celestial Corp", "email": "grace.mitchell@celestial.co", "source": "event", "score": 93, "status": "qualified" },
-  { "id": "L-024", "name": "Alexander Diaz", "company": "CometWorks", "email": "alex.diaz@cometworks.io", "source": "ads", "score": 61, "status": "unqualified" },
-  { "id": "L-025", "name": "Chloe Green", "company": "Infinity Solutions", "email": "chloe.green@infinity.solutions", "source": "web", "score": 81, "status": "contacted" },
-  { "id": "L-026", "name": "Matthew Rivera", "company": "Eclipse Systems", "email": "matt.rivera@eclipse.systems", "source": "referral", "score": 85, "status": "new" },
-  { "id": "L-027", "name": "Zoe Hayes", "company": "LunarWorks", "email": "zoe.hayes@lunarworks.com", "source": "event", "score": 90, "status": "qualified" },
-  { "id": "L-028", "name": "David Torres", "company": "Atlas Group", "email": "david.torres@atlas.group", "source": "ads", "score": 62, "status": "unqualified" },
-  { "id": "L-029", "name": "Scarlett Simmons", "company": "Pioneer Tech", "email": "scarlett.simmons@pioneer.tech", "source": "web", "score": 94, "status": "qualified" },
-  { "id": "L-030", "name": "Jack Peterson", "company": "NovaWorks", "email": "jack.peterson@novaworks.com", "source": "referral", "score": 75, "status": "contacted" },
-  { "id": "L-031", "name": "Victoria Hughes", "company": "Stellar Systems", "email": "victoria.hughes@stellar.io", "source": "event", "score": 80, "status": "contacted" },
-  { "id": "L-032", "name": "Oliver Lopez", "company": "Titan Labs", "email": "oliver.lopez@titanlabs.com", "source": "ads", "score": 69, "status": "unqualified" },
-  { "id": "L-033", "name": "Madison Perez", "company": "AuroraWorks", "email": "madison.perez@aurora.works", "source": "web", "score": 96, "status": "qualified" },
-  { "id": "L-034", "name": "Mason Edwards", "company": "Neptune Tech", "email": "mason.edwards@neptunetech.io", "source": "referral", "score": 71, "status": "contacted" },
-  { "id": "L-035", "name": "Ella Sanders", "company": "Odyssey Inc", "email": "ella.sanders@odyssey.com", "source": "event", "score": 87, "status": "qualified" },
-  { "id": "L-036", "name": "Logan Bell", "company": "Vertex Labs", "email": "logan.bell@vertexlabs.io", "source": "ads", "score": 60, "status": "unqualified" },
-  { "id": "L-037", "name": "Aria Gonzalez", "company": "Astral Corp", "email": "aria.gonzalez@astral.co", "source": "web", "score": 85, "status": "qualified" },
-  { "id": "L-038", "name": "Evelyn Ward", "company": "Halo Systems", "email": "evelyn.ward@halo.systems", "source": "referral", "score": 70, "status": "contacted" },
-  { "id": "L-039", "name": "Carter Morris", "company": "Ignite Tech", "email": "carter.morris@ignite.tech", "source": "event", "score": 63, "status": "unqualified" },
-  { "id": "L-040", "name": "Lily Butler", "company": "Ascend Labs", "email": "lily.butler@ascendlabs.io", "source": "ads", "score": 79, "status": "contacted" },
-  { "id": "L-041", "name": "Jackson Hall", "company": "Zenith Systems", "email": "jackson.hall@zenith.systems", "source": "web", "score": 91, "status": "qualified" },
-  { "id": "L-042", "name": "Sofia Allen", "company": "Lighthouse Corp", "email": "sofia.allen@lighthouse.co", "source": "referral", "score": 82, "status": "new" },
-  { "id": "L-043", "name": "Levi Flores", "company": "HorizonWorks", "email": "levi.flores@horizon.works", "source": "event", "score": 74, "status": "contacted" },
-  { "id": "L-044", "name": "Penelope Martin", "company": "Cosmos Tech", "email": "penelope.martin@cosmos.tech", "source": "ads", "score": 67, "status": "unqualified" },
-  { "id": "L-045", "name": "Wyatt Murphy", "company": "Galaxy Systems", "email": "wyatt.murphy@galaxy.systems", "source": "web", "score": 90, "status": "qualified" },
-  { "id": "L-046", "name": "Layla Kelly", "company": "Infinity Labs", "email": "layla.kelly@infinitylabs.io", "source": "referral", "score": 80, "status": "contacted" },
-  { "id": "L-047", "name": "Owen Howard", "company": "SolarWorks", "email": "owen.howard@solarworks.com", "source": "event", "score": 73, "status": "contacted" },
-  { "id": "L-048", "name": "Nora Rogers", "company": "Polaris Tech", "email": "nora.rogers@polaris.tech", "source": "ads", "score": 65, "status": "unqualified" },
-  { "id": "L-049", "name": "Caleb Ward", "company": "AuroraEdge", "email": "caleb.ward@auroraedge.io", "source": "web", "score": 95, "status": "qualified" },
-  { "id": "L-050", "name": "Hannah Richardson", "company": "Orbit Systems", "email": "hannah.richardson@orbit.systems", "source": "referral", "score": 87, "status": "new" },
-  { "id": "L-051", "name": "Julian Cooper", "company": "NebulaWorks", "email": "julian.cooper@nebula.works", "source": "event", "score": 76, "status": "contacted" },
-  { "id": "L-052", "name": "Aurora Scott", "company": "Photon Labs", "email": "aurora.scott@photonlabs.io", "source": "ads", "score": 64, "status": "unqualified" },
-  { "id": "L-053", "name": "Mila James", "company": "Radiant Corp", "email": "mila.james@radiantcorp.com", "source": "web", "score": 93, "status": "qualified" },
-  { "id": "L-054", "name": "Nathan Brooks", "company": "Spectrum Inc", "email": "nathan.brooks@spectrum.inc", "source": "referral", "score": 72, "status": "contacted" },
-  { "id": "L-055", "name": "Hazel Foster", "company": "Pulse Systems", "email": "hazel.foster@pulse.systems", "source": "event", "score": 88, "status": "qualified" },
-  { "id": "L-056", "name": "Leo Ward", "company": "Momentum Labs", "email": "leo.ward@momentum.io", "source": "ads", "score": 62, "status": "unqualified" },
-  { "id": "L-057", "name": "Ellie Bailey", "company": "NovaEdge", "email": "ellie.bailey@novaedge.com", "source": "web", "score": 80, "status": "contacted" },
-  { "id": "L-058", "name": "Connor Powell", "company": "SiriusWorks", "email": "connor.powell@siriusworks.io", "source": "referral", "score": 85, "status": "new" },
-  { "id": "L-059", "name": "Stella Ward", "company": "Eon Systems", "email": "stella.ward@eonsystems.com", "source": "event", "score": 90, "status": "qualified" },
-  { "id": "L-060", "name": "Ezra Mitchell", "company": "AstroLabs", "email": "ezra.mitchell@astrolabs.io", "source": "ads", "score": 69, "status": "unqualified" },
-  { "id": "L-061", "name": "Nina Clark", "company": "HorizonEdge", "email": "nina.clark@horizonedge.com", "source": "web", "score": 94, "status": "qualified" },
-  { "id": "L-062", "name": "Isaac Ross", "company": "PulseWorks", "email": "isaac.ross@pulseworks.io", "source": "referral", "score": 73, "status": "contacted" },
-  { "id": "L-063", "name": "Paisley Hughes", "company": "Orbit Labs", "email": "paisley.hughes@orbitlabs.com", "source": "event", "score": 86, "status": "qualified" },
-  { "id": "L-064", "name": "Adam Reed", "company": "NebulaEdge", "email": "adam.reed@nebulaedge.io", "source": "ads", "score": 60, "status": "unqualified" },
-  { "id": "L-065", "name": "Luna Perry", "company": "GalaxyWorks", "email": "luna.perry@galaxyworks.com", "source": "web", "score": 89, "status": "qualified" },
-  { "id": "L-066", "name": "Eli Jameson", "company": "Helios Systems", "email": "eli.jameson@helios.systems", "source": "referral", "score": 71, "status": "contacted" },
-  { "id": "L-067", "name": "Savannah Cruz", "company": "PolarisWorks", "email": "savannah.cruz@polarisworks.io", "source": "event", "score": 82, "status": "contacted" },
-  { "id": "L-068", "name": "Christopher Kim", "company": "Ignite Labs", "email": "christopher.kim@ignitelabs.com", "source": "ads", "score": 66, "status": "unqualified" },
-  { "id": "L-069", "name": "Riley Morgan", "company": "CelestialWorks", "email": "riley.morgan@celestial.works", "source": "web", "score": 96, "status": "qualified" },
-  { "id": "L-070", "name": "Victoria Hill", "company": "Astralis Corp", "email": "victoria.hill@astralis.com", "source": "referral", "score": 79, "status": "contacted" },
-  { "id": "L-071", "name": "Leo Bennett", "company": "AstraWorks", "email": "leo.bennett@astraworks.io", "source": "event", "score": 84, "status": "qualified" },
-  { "id": "L-072", "name": "Maya Kelly", "company": "PioneerWorks", "email": "maya.kelly@pioneerworks.com", "source": "ads", "score": 61, "status": "unqualified" },
-  { "id": "L-073", "name": "Elias Rivera", "company": "InfinityEdge", "email": "elias.rivera@infinityedge.io", "source": "web", "score": 92, "status": "qualified" },
-  { "id": "L-074", "name": "Camila White", "company": "StratosWorks", "email": "camila.white@stratosworks.com", "source": "referral", "score": 74, "status": "contacted" },
-  { "id": "L-075", "name": "Hudson James", "company": "NimbusEdge", "email": "hudson.james@nimbusedge.io", "source": "event", "score": 77, "status": "contacted" },
-  { "id": "L-076", "name": "Addison Lewis", "company": "SolarEdge", "email": "addison.lewis@solaredge.com", "source": "ads", "score": 63, "status": "unqualified" },
-  { "id": "L-077", "name": "Willow Nelson", "company": "StellarEdge", "email": "willow.nelson@stellaredge.com", "source": "web", "score": 95, "status": "qualified" },
-  { "id": "L-078", "name": "Mateo Carter", "company": "NovaEdge", "email": "mateo.carter@novaedge.com", "source": "referral", "score": 82, "status": "new" },
-  { "id": "L-079", "name": "Violet Adams", "company": "EclipseWorks", "email": "violet.adams@eclipseworks.io", "source": "event", "score": 88, "status": "qualified" },
-  { "id": "L-080", "name": "Joshua Evans", "company": "ZenithEdge", "email": "joshua.evans@zedithedge.io", "source": "ads", "score": 67, "status": "unqualified" },
-  { "id": "L-081", "name": "Avery Moore", "company": "RadiantEdge", "email": "avery.moore@radiantedge.com", "source": "web", "score": 90, "status": "qualified" },
-  { "id": "L-082", "name": "Isaiah Brooks", "company": "CosmosEdge", "email": "isaiah.brooks@cosmosedge.com", "source": "referral", "score": 76, "status": "contacted" },
-  { "id": "L-083", "name": "Leah Bell", "company": "HorizonEdge", "email": "leah.bell@horizonedge.com", "source": "event", "score": 83, "status": "qualified" },
-  { "id": "L-084", "name": "Grayson Allen", "company": "NebulaEdge", "email": "grayson.allen@nebulaedge.com", "source": "ads", "score": 65, "status": "unqualified" },
-  { "id": "L-085", "name": "Aubrey Rivera", "company": "AuroraEdge", "email": "aubrey.rivera@auroraedge.com", "source": "web", "score": 91, "status": "qualified" },
-  { "id": "L-086", "name": "Lincoln Young", "company": "IgniteEdge", "email": "lincoln.young@igniteedge.io", "source": "referral", "score": 75, "status": "contacted" },
-  { "id": "L-087", "name": "Zoey Price", "company": "AstralEdge", "email": "zoey.price@astraledge.com", "source": "event", "score": 85, "status": "qualified" },
-  { "id": "L-088", "name": "Samuel Cook", "company": "CometEdge", "email": "samuel.cook@cometedge.io", "source": "ads", "score": 62, "status": "unqualified" },
-  { "id": "L-089", "name": "Bella Diaz", "company": "GalaxyEdge", "email": "bella.diaz@galaxyedge.io", "source": "web", "score": 87, "status": "qualified" },
-  { "id": "L-090", "name": "Michael Harris", "company": "SolarEdge", "email": "michael.harris@solaredge.com", "source": "referral", "score": 78, "status": "contacted" },
-  { "id": "L-091", "name": "Sadie Perez", "company": "PulseEdge", "email": "sadie.perez@pulseedge.com", "source": "event", "score": 92, "status": "qualified" },
-  { "id": "L-092", "name": "Joseph Scott", "company": "NovaEdge", "email": "joseph.scott@novaedge.com", "source": "ads", "score": 69, "status": "unqualified" },
-  { "id": "L-093", "name": "Brooklyn Hughes", "company": "StarlightEdge", "email": "brooklyn.hughes@starlightedge.io", "source": "web", "score": 93, "status": "qualified" },
-  { "id": "L-094", "name": "Evan Ward", "company": "IgniteEdge", "email": "evan.ward@igniteedge.com", "source": "referral", "score": 81, "status": "contacted" },
-  { "id": "L-095", "name": "Paisley Russell", "company": "LunarEdge", "email": "paisley.russell@lunaredge.io", "source": "event", "score": 86, "status": "qualified" },
-  { "id": "L-096", "name": "Gabriel Kelly", "company": "VertexEdge", "email": "gabriel.kelly@vertexedge.io", "source": "ads", "score": 64, "status": "unqualified" },
-  { "id": "L-097", "name": "Aurora Bell", "company": "AstralEdge", "email": "aurora.bell@astraledge.com", "source": "web", "score": 95, "status": "qualified" },
-  { "id": "L-098", "name": "Jackson Price", "company": "EclipseEdge", "email": "jackson.price@eclipseedge.io", "source": "referral", "score": 79, "status": "contacted" },
-  { "id": "L-099", "name": "Madelyn Cooper", "company": "CosmosEdge", "email": "madelyn.cooper@cosmosedge.io", "source": "event", "score": 89, "status": "qualified" },
-  { "id": "L-100", "name": "Cameron Brooks", "company": "StratosEdge", "email": "cameron.brooks@stratosedge.io", "source": "ads", "score": 61, "status": "unqualified" }
+  {
+    "id": "L-001",
+    "name": "Ava Stone",
+    "company": "Nimbus LLC",
+    "email": "ava.stone@nimbus.io",
+    "source": "web",
+    "score": 86,
+    "status": "new"
+  },
+  {
+    "id": "L-002",
+    "name": "Liam Carter",
+    "company": "Skyline Inc",
+    "email": "liam.carter@skyline.com",
+    "source": "event",
+    "score": 73,
+    "status": "contacted"
+  },
+  {
+    "id": "L-003",
+    "name": "Sophia Hughes",
+    "company": "Vertex Solutions",
+    "email": "sophia@vertex.solutions",
+    "source": "referral",
+    "score": 92,
+    "status": "qualified"
+  },
+  {
+    "id": "L-004",
+    "name": "Ethan Morgan",
+    "company": "Bluewave Tech",
+    "email": "ethan.morgan@bluewave.tech",
+    "source": "ads",
+    "score": 65,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-005",
+    "name": "Olivia Bennett",
+    "company": "Aurora Systems",
+    "email": "olivia.bennett@aurora.io",
+    "source": "web",
+    "score": 78,
+    "status": "contacted"
+  },
+  {
+    "id": "L-006",
+    "name": "Noah Phillips",
+    "company": "QuantumSoft",
+    "email": "noah.phillips@quantumsoft.com",
+    "source": "referral",
+    "score": 84,
+    "status": "new"
+  },
+  {
+    "id": "L-007",
+    "name": "Isabella Turner",
+    "company": "Everest Corp",
+    "email": "isabella.turner@everest.co",
+    "source": "event",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": "L-008",
+    "name": "James Parker",
+    "company": "SummitWorks",
+    "email": "james.parker@summitworks.com",
+    "source": "ads",
+    "score": 59,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-009",
+    "name": "Mia Rivera",
+    "company": "CloudEdge",
+    "email": "mia.rivera@cloudedge.io",
+    "source": "web",
+    "score": 74,
+    "status": "contacted"
+  },
+  {
+    "id": "L-010",
+    "name": "William Adams",
+    "company": "NextGen Labs",
+    "email": "william.adams@nextgenlabs.com",
+    "source": "referral",
+    "score": 97,
+    "status": "qualified"
+  },
+  {
+    "id": "L-011",
+    "name": "Charlotte Foster",
+    "company": "Brightpath Ltd",
+    "email": "charlotte.foster@brightpath.com",
+    "source": "event",
+    "score": 82,
+    "status": "new"
+  },
+  {
+    "id": "L-012",
+    "name": "Benjamin Gray",
+    "company": "Ironclad Tech",
+    "email": "ben.gray@ironclad.tech",
+    "source": "ads",
+    "score": 68,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-013",
+    "name": "Amelia Watson",
+    "company": "NovaCore",
+    "email": "amelia.watson@novacore.io",
+    "source": "web",
+    "score": 89,
+    "status": "qualified"
+  },
+  {
+    "id": "L-014",
+    "name": "Lucas Cooper",
+    "company": "Solaris Group",
+    "email": "lucas.cooper@solaris.group",
+    "source": "referral",
+    "score": 72,
+    "status": "contacted"
+  },
+  {
+    "id": "L-015",
+    "name": "Harper Brooks",
+    "company": "ZenithWorks",
+    "email": "harper.brooks@zenithworks.com",
+    "source": "event",
+    "score": 77,
+    "status": "contacted"
+  },
+  {
+    "id": "L-016",
+    "name": "Elijah Price",
+    "company": "Hyperion Labs",
+    "email": "elijah.price@hyperion.io",
+    "source": "ads",
+    "score": 64,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-017",
+    "name": "Abigail King",
+    "company": "Starlight Inc",
+    "email": "abigail.king@starlight.com",
+    "source": "web",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": "L-018",
+    "name": "Henry Scott",
+    "company": "Orion Systems",
+    "email": "henry.scott@orion.systems",
+    "source": "referral",
+    "score": 83,
+    "status": "new"
+  },
+  {
+    "id": "L-019",
+    "name": "Emily Cox",
+    "company": "AetherWorks",
+    "email": "emily.cox@aether.works",
+    "source": "event",
+    "score": 76,
+    "status": "contacted"
+  },
+  {
+    "id": "L-020",
+    "name": "Daniel Ward",
+    "company": "Horizon Tech",
+    "email": "daniel.ward@horizontech.io",
+    "source": "ads",
+    "score": 66,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-021",
+    "name": "Ella Ramirez",
+    "company": "LumenSoft",
+    "email": "ella.ramirez@lumensoft.com",
+    "source": "web",
+    "score": 88,
+    "status": "qualified"
+  },
+  {
+    "id": "L-022",
+    "name": "Sebastian Howard",
+    "company": "Stratosphere Inc",
+    "email": "sebastian.howard@stratosphere.com",
+    "source": "referral",
+    "score": 79,
+    "status": "contacted"
+  },
+  {
+    "id": "L-023",
+    "name": "Grace Mitchell",
+    "company": "Celestial Corp",
+    "email": "grace.mitchell@celestial.co",
+    "source": "event",
+    "score": 93,
+    "status": "qualified"
+  },
+  {
+    "id": "L-024",
+    "name": "Alexander Diaz",
+    "company": "CometWorks",
+    "email": "alex.diaz@cometworks.io",
+    "source": "ads",
+    "score": 61,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-025",
+    "name": "Chloe Green",
+    "company": "Infinity Solutions",
+    "email": "chloe.green@infinity.solutions",
+    "source": "web",
+    "score": 81,
+    "status": "contacted"
+  },
+  {
+    "id": "L-026",
+    "name": "Matthew Rivera",
+    "company": "Eclipse Systems",
+    "email": "matt.rivera@eclipse.systems",
+    "source": "referral",
+    "score": 85,
+    "status": "new"
+  },
+  {
+    "id": "L-027",
+    "name": "Zoe Hayes",
+    "company": "LunarWorks",
+    "email": "zoe.hayes@lunarworks.com",
+    "source": "event",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": "L-028",
+    "name": "David Torres",
+    "company": "Atlas Group",
+    "email": "david.torres@atlas.group",
+    "source": "ads",
+    "score": 62,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-029",
+    "name": "Scarlett Simmons",
+    "company": "Pioneer Tech",
+    "email": "scarlett.simmons@pioneer.tech",
+    "source": "web",
+    "score": 94,
+    "status": "qualified"
+  },
+  {
+    "id": "L-030",
+    "name": "Jack Peterson",
+    "company": "NovaWorks",
+    "email": "jack.peterson@novaworks.com",
+    "source": "referral",
+    "score": 75,
+    "status": "contacted"
+  },
+  {
+    "id": "L-031",
+    "name": "Victoria Hughes",
+    "company": "Stellar Systems",
+    "email": "victoria.hughes@stellar.io",
+    "source": "event",
+    "score": 80,
+    "status": "contacted"
+  },
+  {
+    "id": "L-032",
+    "name": "Oliver Lopez",
+    "company": "Titan Labs",
+    "email": "oliver.lopez@titanlabs.com",
+    "source": "ads",
+    "score": 69,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-033",
+    "name": "Madison Perez",
+    "company": "AuroraWorks",
+    "email": "madison.perez@aurora.works",
+    "source": "web",
+    "score": 96,
+    "status": "qualified"
+  },
+  {
+    "id": "L-034",
+    "name": "Mason Edwards",
+    "company": "Neptune Tech",
+    "email": "mason.edwards@neptunetech.io",
+    "source": "referral",
+    "score": 71,
+    "status": "contacted"
+  },
+  {
+    "id": "L-035",
+    "name": "Ella Sanders",
+    "company": "Odyssey Inc",
+    "email": "ella.sanders@odyssey.com",
+    "source": "event",
+    "score": 87,
+    "status": "qualified"
+  },
+  {
+    "id": "L-036",
+    "name": "Logan Bell",
+    "company": "Vertex Labs",
+    "email": "logan.bell@vertexlabs.io",
+    "source": "ads",
+    "score": 60,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-037",
+    "name": "Aria Gonzalez",
+    "company": "Astral Corp",
+    "email": "aria.gonzalez@astral.co",
+    "source": "web",
+    "score": 85,
+    "status": "qualified"
+  },
+  {
+    "id": "L-038",
+    "name": "Evelyn Ward",
+    "company": "Halo Systems",
+    "email": "evelyn.ward@halo.systems",
+    "source": "referral",
+    "score": 70,
+    "status": "contacted"
+  },
+  {
+    "id": "L-039",
+    "name": "Carter Morris",
+    "company": "Ignite Tech",
+    "email": "carter.morris@ignite.tech",
+    "source": "event",
+    "score": 63,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-040",
+    "name": "Lily Butler",
+    "company": "Ascend Labs",
+    "email": "lily.butler@ascendlabs.io",
+    "source": "ads",
+    "score": 79,
+    "status": "contacted"
+  },
+  {
+    "id": "L-041",
+    "name": "Jackson Hall",
+    "company": "Zenith Systems",
+    "email": "jackson.hall@zenith.systems",
+    "source": "web",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": "L-042",
+    "name": "Sofia Allen",
+    "company": "Lighthouse Corp",
+    "email": "sofia.allen@lighthouse.co",
+    "source": "referral",
+    "score": 82,
+    "status": "new"
+  },
+  {
+    "id": "L-043",
+    "name": "Levi Flores",
+    "company": "HorizonWorks",
+    "email": "levi.flores@horizon.works",
+    "source": "event",
+    "score": 74,
+    "status": "contacted"
+  },
+  {
+    "id": "L-044",
+    "name": "Penelope Martin",
+    "company": "Cosmos Tech",
+    "email": "penelope.martin@cosmos.tech",
+    "source": "ads",
+    "score": 67,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-045",
+    "name": "Wyatt Murphy",
+    "company": "Galaxy Systems",
+    "email": "wyatt.murphy@galaxy.systems",
+    "source": "web",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": "L-046",
+    "name": "Layla Kelly",
+    "company": "Infinity Labs",
+    "email": "layla.kelly@infinitylabs.io",
+    "source": "referral",
+    "score": 80,
+    "status": "contacted"
+  },
+  {
+    "id": "L-047",
+    "name": "Owen Howard",
+    "company": "SolarWorks",
+    "email": "owen.howard@solarworks.com",
+    "source": "event",
+    "score": 73,
+    "status": "contacted"
+  },
+  {
+    "id": "L-048",
+    "name": "Nora Rogers",
+    "company": "Polaris Tech",
+    "email": "nora.rogers@polaris.tech",
+    "source": "ads",
+    "score": 65,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-049",
+    "name": "Caleb Ward",
+    "company": "AuroraEdge",
+    "email": "caleb.ward@auroraedge.io",
+    "source": "web",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": "L-050",
+    "name": "Hannah Richardson",
+    "company": "Orbit Systems",
+    "email": "hannah.richardson@orbit.systems",
+    "source": "referral",
+    "score": 87,
+    "status": "new"
+  },
+  {
+    "id": "L-051",
+    "name": "Julian Cooper",
+    "company": "NebulaWorks",
+    "email": "julian.cooper@nebula.works",
+    "source": "event",
+    "score": 76,
+    "status": "contacted"
+  },
+  {
+    "id": "L-052",
+    "name": "Aurora Scott",
+    "company": "Photon Labs",
+    "email": "aurora.scott@photonlabs.io",
+    "source": "ads",
+    "score": 64,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-053",
+    "name": "Mila James",
+    "company": "Radiant Corp",
+    "email": "mila.james@radiantcorp.com",
+    "source": "web",
+    "score": 93,
+    "status": "qualified"
+  },
+  {
+    "id": "L-054",
+    "name": "Nathan Brooks",
+    "company": "Spectrum Inc",
+    "email": "nathan.brooks@spectrum.inc",
+    "source": "referral",
+    "score": 72,
+    "status": "contacted"
+  },
+  {
+    "id": "L-055",
+    "name": "Hazel Foster",
+    "company": "Pulse Systems",
+    "email": "hazel.foster@pulse.systems",
+    "source": "event",
+    "score": 88,
+    "status": "qualified"
+  },
+  {
+    "id": "L-056",
+    "name": "Leo Ward",
+    "company": "Momentum Labs",
+    "email": "leo.ward@momentum.io",
+    "source": "ads",
+    "score": 62,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-057",
+    "name": "Ellie Bailey",
+    "company": "NovaEdge",
+    "email": "ellie.bailey@novaedge.com",
+    "source": "web",
+    "score": 80,
+    "status": "contacted"
+  },
+  {
+    "id": "L-058",
+    "name": "Connor Powell",
+    "company": "SiriusWorks",
+    "email": "connor.powell@siriusworks.io",
+    "source": "referral",
+    "score": 85,
+    "status": "new"
+  },
+  {
+    "id": "L-059",
+    "name": "Stella Ward",
+    "company": "Eon Systems",
+    "email": "stella.ward@eonsystems.com",
+    "source": "event",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": "L-060",
+    "name": "Ezra Mitchell",
+    "company": "AstroLabs",
+    "email": "ezra.mitchell@astrolabs.io",
+    "source": "ads",
+    "score": 69,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-061",
+    "name": "Nina Clark",
+    "company": "HorizonEdge",
+    "email": "nina.clark@horizonedge.com",
+    "source": "web",
+    "score": 94,
+    "status": "qualified"
+  },
+  {
+    "id": "L-062",
+    "name": "Isaac Ross",
+    "company": "PulseWorks",
+    "email": "isaac.ross@pulseworks.io",
+    "source": "referral",
+    "score": 73,
+    "status": "contacted"
+  },
+  {
+    "id": "L-063",
+    "name": "Paisley Hughes",
+    "company": "Orbit Labs",
+    "email": "paisley.hughes@orbitlabs.com",
+    "source": "event",
+    "score": 86,
+    "status": "qualified"
+  },
+  {
+    "id": "L-064",
+    "name": "Adam Reed",
+    "company": "NebulaEdge",
+    "email": "adam.reed@nebulaedge.io",
+    "source": "ads",
+    "score": 60,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-065",
+    "name": "Luna Perry",
+    "company": "GalaxyWorks",
+    "email": "luna.perry@galaxyworks.com",
+    "source": "web",
+    "score": 89,
+    "status": "qualified"
+  },
+  {
+    "id": "L-066",
+    "name": "Eli Jameson",
+    "company": "Helios Systems",
+    "email": "eli.jameson@helios.systems",
+    "source": "referral",
+    "score": 71,
+    "status": "contacted"
+  },
+  {
+    "id": "L-067",
+    "name": "Savannah Cruz",
+    "company": "PolarisWorks",
+    "email": "savannah.cruz@polarisworks.io",
+    "source": "event",
+    "score": 82,
+    "status": "contacted"
+  },
+  {
+    "id": "L-068",
+    "name": "Christopher Kim",
+    "company": "Ignite Labs",
+    "email": "christopher.kim@ignitelabs.com",
+    "source": "ads",
+    "score": 66,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-069",
+    "name": "Riley Morgan",
+    "company": "CelestialWorks",
+    "email": "riley.morgan@celestial.works",
+    "source": "web",
+    "score": 96,
+    "status": "qualified"
+  },
+  {
+    "id": "L-070",
+    "name": "Victoria Hill",
+    "company": "Astralis Corp",
+    "email": "victoria.hill@astralis.com",
+    "source": "referral",
+    "score": 79,
+    "status": "contacted"
+  },
+  {
+    "id": "L-071",
+    "name": "Leo Bennett",
+    "company": "AstraWorks",
+    "email": "leo.bennett@astraworks.io",
+    "source": "event",
+    "score": 84,
+    "status": "qualified"
+  },
+  {
+    "id": "L-072",
+    "name": "Maya Kelly",
+    "company": "PioneerWorks",
+    "email": "maya.kelly@pioneerworks.com",
+    "source": "ads",
+    "score": 61,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-073",
+    "name": "Elias Rivera",
+    "company": "InfinityEdge",
+    "email": "elias.rivera@infinityedge.io",
+    "source": "web",
+    "score": 92,
+    "status": "qualified"
+  },
+  {
+    "id": "L-074",
+    "name": "Camila White",
+    "company": "StratosWorks",
+    "email": "camila.white@stratosworks.com",
+    "source": "referral",
+    "score": 74,
+    "status": "contacted"
+  },
+  {
+    "id": "L-075",
+    "name": "Hudson James",
+    "company": "NimbusEdge",
+    "email": "hudson.james@nimbusedge.io",
+    "source": "event",
+    "score": 77,
+    "status": "contacted"
+  },
+  {
+    "id": "L-076",
+    "name": "Addison Lewis",
+    "company": "SolarEdge",
+    "email": "addison.lewis@solaredge.com",
+    "source": "ads",
+    "score": 63,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-077",
+    "name": "Willow Nelson",
+    "company": "StellarEdge",
+    "email": "willow.nelson@stellaredge.com",
+    "source": "web",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": "L-078",
+    "name": "Mateo Carter",
+    "company": "NovaEdge",
+    "email": "mateo.carter@novaedge.com",
+    "source": "referral",
+    "score": 82,
+    "status": "new"
+  },
+  {
+    "id": "L-079",
+    "name": "Violet Adams",
+    "company": "EclipseWorks",
+    "email": "violet.adams@eclipseworks.io",
+    "source": "event",
+    "score": 88,
+    "status": "qualified"
+  },
+  {
+    "id": "L-080",
+    "name": "Joshua Evans",
+    "company": "ZenithEdge",
+    "email": "joshua.evans@zedithedge.io",
+    "source": "ads",
+    "score": 67,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-081",
+    "name": "Avery Moore",
+    "company": "RadiantEdge",
+    "email": "avery.moore@radiantedge.com",
+    "source": "web",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": "L-082",
+    "name": "Isaiah Brooks",
+    "company": "CosmosEdge",
+    "email": "isaiah.brooks@cosmosedge.com",
+    "source": "referral",
+    "score": 76,
+    "status": "contacted"
+  },
+  {
+    "id": "L-083",
+    "name": "Leah Bell",
+    "company": "HorizonEdge",
+    "email": "leah.bell@horizonedge.com",
+    "source": "event",
+    "score": 83,
+    "status": "qualified"
+  },
+  {
+    "id": "L-084",
+    "name": "Grayson Allen",
+    "company": "NebulaEdge",
+    "email": "grayson.allen@nebulaedge.com",
+    "source": "ads",
+    "score": 65,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-085",
+    "name": "Aubrey Rivera",
+    "company": "AuroraEdge",
+    "email": "aubrey.rivera@auroraedge.com",
+    "source": "web",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": "L-086",
+    "name": "Lincoln Young",
+    "company": "IgniteEdge",
+    "email": "lincoln.young@igniteedge.io",
+    "source": "referral",
+    "score": 75,
+    "status": "contacted"
+  },
+  {
+    "id": "L-087",
+    "name": "Zoey Price",
+    "company": "AstralEdge",
+    "email": "zoey.price@astraledge.com",
+    "source": "event",
+    "score": 85,
+    "status": "qualified"
+  },
+  {
+    "id": "L-088",
+    "name": "Samuel Cook",
+    "company": "CometEdge",
+    "email": "samuel.cook@cometedge.io",
+    "source": "ads",
+    "score": 62,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-089",
+    "name": "Bella Diaz",
+    "company": "GalaxyEdge",
+    "email": "bella.diaz@galaxyedge.io",
+    "source": "web",
+    "score": 87,
+    "status": "qualified"
+  },
+  {
+    "id": "L-090",
+    "name": "Michael Harris",
+    "company": "SolarEdge",
+    "email": "michael.harris@solaredge.com",
+    "source": "referral",
+    "score": 78,
+    "status": "contacted"
+  },
+  {
+    "id": "L-091",
+    "name": "Sadie Perez",
+    "company": "PulseEdge",
+    "email": "sadie.perez@pulseedge.com",
+    "source": "event",
+    "score": 92,
+    "status": "qualified"
+  },
+  {
+    "id": "L-092",
+    "name": "Joseph Scott",
+    "company": "NovaEdge",
+    "email": "joseph.scott@novaedge.com",
+    "source": "ads",
+    "score": 69,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-093",
+    "name": "Brooklyn Hughes",
+    "company": "StarlightEdge",
+    "email": "brooklyn.hughes@starlightedge.io",
+    "source": "web",
+    "score": 93,
+    "status": "qualified"
+  },
+  {
+    "id": "L-094",
+    "name": "Evan Ward",
+    "company": "IgniteEdge",
+    "email": "evan.ward@igniteedge.com",
+    "source": "referral",
+    "score": 81,
+    "status": "contacted"
+  },
+  {
+    "id": "L-095",
+    "name": "Paisley Russell",
+    "company": "LunarEdge",
+    "email": "paisley.russell@lunaredge.io",
+    "source": "event",
+    "score": 86,
+    "status": "qualified"
+  },
+  {
+    "id": "L-096",
+    "name": "Gabriel Kelly",
+    "company": "VertexEdge",
+    "email": "gabriel.kelly@vertexedge.io",
+    "source": "ads",
+    "score": 64,
+    "status": "unqualified"
+  },
+  {
+    "id": "L-097",
+    "name": "Aurora Bell",
+    "company": "AstralEdge",
+    "email": "aurora.bell@astraledge.com",
+    "source": "web",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": "L-098",
+    "name": "Jackson Price",
+    "company": "EclipseEdge",
+    "email": "jackson.price@eclipseedge.io",
+    "source": "referral",
+    "score": 79,
+    "status": "contacted"
+  },
+  {
+    "id": "L-099",
+    "name": "Madelyn Cooper",
+    "company": "CosmosEdge",
+    "email": "madelyn.cooper@cosmosedge.io",
+    "source": "event",
+    "score": 89,
+    "status": "qualified"
+  },
+  {
+    "id": "L-100",
+    "name": "Cameron Brooks",
+    "company": "StratosEdge",
+    "email": "cameron.brooks@stratosedge.io",
+    "source": "ads",
+    "score": 61,
+    "status": "unqualified"
+  }
 ]

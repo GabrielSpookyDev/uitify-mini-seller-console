@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import { useLeadsActions, useLeadsState } from '@/state/leads/useLeads';
-import Input from '@/components/ui/Input';
-import Select from '@/components/ui/Select';
-import Button from '@/components/ui/Button';
-import type { LeadStatus } from '@/types/types';
+import { useEffect, useRef, useState } from "react";
+import { useLeadsActions, useLeadsState } from "@/state/leads/useLeads";
+import Input from "@/components/ui/Input";
+import Select from "@/components/ui/Select";
+import Button from "@/components/ui/Button";
+import type { LeadStatus } from "@/types/types";
 
-const STATUS_OPTIONS: Array<LeadStatus | 'all'> = [
-  'all',
-  'new',
-  'contacted',
-  'qualified',
-  'unqualified',
-  'converted',
+const STATUS_OPTIONS: Array<LeadStatus | "all"> = [
+  "all",
+  "new",
+  "contacted",
+  "qualified",
+  "unqualified",
+  "converted",
 ];
 
 export default function LeadsToolbar() {
@@ -31,12 +31,15 @@ export default function LeadsToolbar() {
     };
   }, [searchInput, setSearch]);
 
-  const toggleSort = () => setSort('score', view.sortDir === 'desc' ? 'asc' : 'desc');
+  const toggleSort = () =>
+    setSort("score", view.sortDir === "desc" ? "asc" : "desc");
 
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-1 items-center gap-2">
-        <label htmlFor="lead-search" className="sr-only">Search leads</label>
+        <label htmlFor="lead-search" className="sr-only">
+          Search leads
+        </label>
         <Input
           id="lead-search"
           value={searchInput}
@@ -46,11 +49,15 @@ export default function LeadsToolbar() {
           className="sm:max-w-xs"
         />
 
-        <label htmlFor="status-filter" className="sr-only">Filter by status</label>
+        <label htmlFor="status-filter" className="sr-only">
+          Filter by status
+        </label>
         <Select
           id="status-filter"
           value={view.statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as LeadStatus | 'all')}
+          onChange={(e) =>
+            setStatusFilter(e.target.value as LeadStatus | "all")
+          }
           aria-label="Filter by status"
         >
           {STATUS_OPTIONS.map((opt) => (
@@ -60,8 +67,14 @@ export default function LeadsToolbar() {
           ))}
         </Select>
 
-        <Button type="button" onClick={toggleSort} variant="secondary" title="Toggle sort by score">
-          Score {view.sortDir === 'desc' ? '↓' : '↑'} {/* TODO: Update this into better Chevron Icons */}
+        <Button
+          type="button"
+          onClick={toggleSort}
+          variant="secondary"
+          title="Toggle sort by score"
+        >
+          Score {view.sortDir === "desc" ? "↓" : "↑"}{" "}
+          {/* TODO: Update this into better Chevron Icons */}
         </Button>
       </div>
     </div>

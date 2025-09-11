@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   rounded?: string;
 };
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
-  { rounded = 'rounded-2xl',className = '', children, ...rest },
+  { rounded = "rounded-2xl", className = "", children, ...rest },
   ref
 ) {
   return (
@@ -15,7 +15,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
       className={[
         `${rounded} border border-zinc-200/70 bg-white/80 backdrop-blur-sm shadow-sm`,
         className,
-      ].join(' ')}
+      ].join(" ")}
     >
       {children}
     </div>

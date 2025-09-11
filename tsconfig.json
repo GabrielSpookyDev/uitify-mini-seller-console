@@ -1,13 +1,13 @@
 {
   "files": [],
-    "compilerOptions": {
+  "compilerOptions": {
     "strict": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     }
   },
   "references": [

@@ -1,9 +1,9 @@
-import { memo, useMemo, useState } from 'react';
-import { useLeadsActions, useVisibleLeads } from '@/state/leads/useLeads';
-import Pagination from '@/components/ui/Pagination';
-import Badge from '@/components/ui/Badge';
+import { memo, useMemo, useState } from "react";
+import { useLeadsActions, useVisibleLeads } from "@/state/leads/useLeads";
+import Pagination from "@/components/ui/Pagination";
+import Badge from "@/components/ui/Badge";
 
-import type { Tone } from '@/components/ui/Badge';
+import type { Tone } from "@/components/ui/Badge";
 
 export default function LeadsTable() {
   const allLeads = useVisibleLeads();
@@ -24,13 +24,15 @@ export default function LeadsTable() {
     return (
       <div className="rounded-xl border border-zinc-200 p-6 text-center">
         <p className="text-zinc-800 font-medium">No results</p>
-        <p className="mt-1 text-sm text-zinc-600">Try clearing search or changing filters.</p>
+        <p className="mt-1 text-sm text-zinc-600">
+          Try clearing search or changing filters.
+        </p>
       </div>
     );
   }
-// TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
-// TODO: Fix horizontal scrolling
-// TODO: Add sorting
+  // TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
+  // TODO: Fix horizontal scrolling
+  // TODO: Add sorting
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-2xl border border-zinc-200">
@@ -69,24 +71,28 @@ export default function LeadsTable() {
   );
 }
 
-const LeadRow = memo(function LeadRow({ lead }: { lead: ReturnType<typeof useVisibleLeads>[number] }) {
+const LeadRow = memo(function LeadRow({
+  lead,
+}: {
+  lead: ReturnType<typeof useVisibleLeads>[number];
+}) {
   const { selectLead } = useLeadsActions();
   let tone: Tone;
   switch (lead.status) {
-    case 'qualified':
-      tone = 'green';
+    case "qualified":
+      tone = "green";
       break;
-    case 'contacted':
-      tone = 'amber';
+    case "contacted":
+      tone = "amber";
       break;
-    case 'new':
-      tone = 'indigo';
+    case "new":
+      tone = "indigo";
       break;
-    case 'unqualified':
-      tone = 'rose';
+    case "unqualified":
+      tone = "rose";
       break;
     default:
-      tone = 'neutral';
+      tone = "neutral";
   }
 
   return (
@@ -95,12 +101,18 @@ const LeadRow = memo(function LeadRow({ lead }: { lead: ReturnType<typeof useVis
       onClick={() => selectLead(lead.id)}
       aria-label={`Open details for ${lead.name}`}
     >
-      <td className="px-3 py-2 text-sm font-medium text-zinc-900">{lead.name}</td>
+      <td className="px-3 py-2 text-sm font-medium text-zinc-900">
+        {lead.name}
+      </td>
       <td className="px-3 py-2 text-sm text-zinc-800">{lead.company}</td>
       <td className="px-3 py-2 text-sm text-zinc-700">{lead.email}</td>
-      <td className="px-3 py-2 text-xs uppercase tracking-wide text-zinc-500">{lead.source}</td>
+      <td className="px-3 py-2 text-xs uppercase tracking-wide text-zinc-500">
+        {lead.source}
+      </td>
       <td className="px-3 py-2 text-sm tabular-nums">{lead.score}</td>
-      <td className="px-3 py-2"><Badge tone={tone}>{lead.status}</Badge></td>
+      <td className="px-3 py-2">
+        <Badge tone={tone}>{lead.status}</Badge>
+      </td>
     </tr>
   );
 });

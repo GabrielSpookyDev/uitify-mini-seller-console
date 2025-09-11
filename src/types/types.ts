@@ -1,10 +1,10 @@
 // ---- Leads ----
 export type LeadStatus =
-  | 'new'
-  | 'contacted'
-  | 'qualified'
-  | 'unqualified'
-  | 'converted';
+  | "new"
+  | "contacted"
+  | "qualified"
+  | "unqualified"
+  | "converted";
 
 export interface Lead {
   id: string;
@@ -18,11 +18,11 @@ export interface Lead {
 
 // ---- Opportunities ----
 export type OpportunityStage =
-  | 'prospecting'
-  | 'proposal'
-  | 'negotiation'
-  | 'won'
-  | 'lost';
+  | "prospecting"
+  | "proposal"
+  | "negotiation"
+  | "won"
+  | "lost";
 
 export interface Opportunity {
   id: string;
@@ -35,12 +35,12 @@ export interface Opportunity {
 }
 
 // ---- UI & Sorting ----
-export type SortKey = 'score' | 'name';
-export type SortDir = 'asc' | 'desc';
+export type SortKey = "score" | "name";
+export type SortDir = "asc" | "desc";
 
 export interface LeadsViewState {
   searchTerm: string;
-  statusFilter: LeadStatus | 'all';
+  statusFilter: LeadStatus | "all";
   sortKey: SortKey;
   sortDir: SortDir;
   selectedLeadId: string | null;

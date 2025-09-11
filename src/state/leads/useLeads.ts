@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo } from "react";
 import type {
   Lead,
   LeadStatus,
@@ -7,20 +7,20 @@ import type {
   SortKey,
   Opportunity,
   OpportunityStage,
-} from '@/types/types';
+} from "@/types/types";
 import {
   DEFAULT_LEADS_VIEW_STATE,
   loadLeadsViewState,
   saveLeadsViewState,
-} from '@/lib/storage';
-import { generateUuidV4 } from '@/lib/id';
+} from "@/lib/storage";
+import { generateUuidV4 } from "@/lib/id";
 
 // -------- Types --------
 export type LoadState =
-  | { kind: 'idle' }
-  | { kind: 'loading' }
-  | { kind: 'loaded' }
-  | { kind: 'error'; message: string };
+  | { kind: "idle" }
+  | { kind: "loading" }
+  | { kind: "loaded" }
+  | { kind: "error"; message: string };
 
 export interface LeadsState {
   load: LoadState;
@@ -30,52 +30,73 @@ export interface LeadsState {
 }
 
 export type LeadsAction =
-  | { type: 'load:start' }
-  | { type: 'load:success'; payload: Lead[] }
-  | { type: 'load:error'; message: string }
-  | { type: 'view:setSearch'; searchTerm: string }
-  | { type: 'view:setStatus'; status: LeadStatus | 'all' }
-  | { type: 'view:setSort'; sortKey: SortKey; sortDir: SortDir }
-  | { type: 'view:select'; leadId: string | null }
-  | { type: 'lead:update'; id: string; patch: Partial<Lead> }
-  | { type: 'opportunity:add'; payload: Opportunity };
+  | { type: "load:start" }
+  | { type: "load:success"; payload: Lead[] }
+  | { type: "load:error"; message: string }
+  | { type: "view:setSearch"; searchTerm: string }
+  | { type: "view:setStatus"; status: LeadStatus | "all" }
+  | { type: "view:setSort"; sortKey: SortKey; sortDir: SortDir }
+  | { type: "view:select"; leadId: string | null }
+  | { type: "lead:update"; id: string; patch: Partial<Lead> }
+  | { type: "opportunity:add"; payload: Opportunity };
 
 // -------- Init / Reducer --------
 export function getInitialLeadsState(): LeadsState {
   const persisted = loadLeadsViewState();
   return {
-    load: { kind: 'idle' },
+    load: { kind: "idle" },
     leads: [],
     view: persisted ?? DEFAULT_LEADS_VIEW_STATE,
     opportunities: [],
   };
 }
 
-export function leadsReducer(state: LeadsState, action: LeadsAction): LeadsState {
+export function leadsReducer(
+  state: LeadsState,
+  action: LeadsAction
+): LeadsState {
   switch (action.type) {
-    case 'load:start':
-      return { ...state, load: { kind: 'loading' } };
-    case 'load:success':
-      return { ...state, load: { kind: 'loaded' }, leads: action.payload };
-    case 'load:error':
-      return { ...state, load: { kind: 'error', message: action.message } };
+    case "load:start":
+      return { ...state, load: { kind: "loading" } };
+    case "load:success":
+      return { ...state, load: { kind: "loaded" }, leads: action.payload };
+    case "load:error":
+      return { ...state, load: { kind: "error", message: action.message } };
 
-    case 'view:setSearch':
-      return { ...state, view: { ...state.view, searchTerm: action.searchTerm } };
-    case 'view:setStatus':
+    case "view:setSearch":
+      return {
+        ...state,
+        view: { ...state.view, searchTerm: action.searchTerm },
+      };
+    case "view:setStatus":
       return { ...state, view: { ...state.view, statusFilter: action.status } };
-    case 'view:setSort':
-      return { ...state, view: { ...state.view, sortKey: action.sortKey, sortDir: action.sortDir } };
-    case 'view:select':
-      return { ...state, view: { ...state.view, selectedLeadId: action.leadId } };
+    case "view:setSort":
+      return {
+        ...state,
+        view: {
+          ...state.view,
+          sortKey: action.sortKey,
+          sortDir: action.sortDir,
+        },
+      };
+    case "view:select":
+      return {
+        ...state,
+        view: { ...state.view, selectedLeadId: action.leadId },
+      };
 
-    case 'lead:update': {
-      const nextLeads = state.leads.map((l) => (l.id === action.id ? { ...l, ...action.patch } : l));
+    case "lead:update": {
+      const nextLeads = state.leads.map((l) =>
+        l.id === action.id ? { ...l, ...action.patch } : l
+      );
       return { ...state, leads: nextLeads };
     }
 
-    case 'opportunity:add':
-      return { ...state, opportunities: [action.payload, ...state.opportunities] };
+    case "opportunity:add":
+      return {
+        ...state,
+        opportunities: [action.payload, ...state.opportunities],
+      };
 
     default:
       return state;
@@ -92,11 +113,13 @@ export interface LeadsContextValue {
   state: LeadsState;
   dispatch: React.Dispatch<LeadsAction>;
 }
-export const LeadsContext = createContext<LeadsContextValue | undefined>(undefined);
+export const LeadsContext = createContext<LeadsContextValue | undefined>(
+  undefined
+);
 
 export function useLeadsContextStrict(): LeadsContextValue {
   const ctx = useContext(LeadsContext);
-  if (!ctx) throw new Error('Leads hooks must be used within <LeadsProvider>');
+  if (!ctx) throw new Error("Leads hooks must be used within <LeadsProvider>");
   return ctx;
 }
 
@@ -112,15 +135,22 @@ export function useLeadsActions() {
   const { dispatch, state } = useLeadsContextStrict();
 
   return {
-    setSearch: (searchTerm: string) => dispatch({ type: 'view:setSearch', searchTerm }),
-    setStatusFilter: (status: LeadStatus | 'all') => dispatch({ type: 'view:setStatus', status }),
+    setSearch: (searchTerm: string) =>
+      dispatch({ type: "view:setSearch", searchTerm }),
+    setStatusFilter: (status: LeadStatus | "all") =>
+      dispatch({ type: "view:setStatus", status }),
     setSort: (sortKey: SortKey, sortDir: SortDir) =>
-      dispatch({ type: 'view:setSort', sortKey, sortDir }),
-    selectLead: (leadId: string | null) => dispatch({ type: 'view:select', leadId }),
+      dispatch({ type: "view:setSort", sortKey, sortDir }),
+    selectLead: (leadId: string | null) =>
+      dispatch({ type: "view:select", leadId }),
     updateLead: (id: string, patch: Partial<Lead>) =>
-      dispatch({ type: 'lead:update', id, patch }),
+      dispatch({ type: "lead:update", id, patch }),
 
-    convertLead: (leadId: string, amount?: number, stage: OpportunityStage = 'prospecting') => {
+    convertLead: (
+      leadId: string,
+      amount?: number,
+      stage: OpportunityStage = "prospecting"
+    ) => {
       const lead = state.leads.find((l) => l.id === leadId);
       if (!lead) return;
 
@@ -134,8 +164,12 @@ export function useLeadsActions() {
         createdAt: new Date().toISOString(),
       };
 
-      dispatch({ type: 'opportunity:add', payload: opp });
-      dispatch({ type: 'lead:update', id: lead.id, patch: { status: 'converted' } });
+      dispatch({ type: "opportunity:add", payload: opp });
+      dispatch({
+        type: "lead:update",
+        id: lead.id,
+        patch: { status: "converted" },
+      });
     },
   };
 }
@@ -155,17 +189,23 @@ export function useVisibleLeads(): Lead[] {
 
     if (searchTerm.trim()) {
       const q = searchTerm.trim();
-      result = result.filter((l) => containsCI(l.name, q) || containsCI(l.company, q));
+      result = result.filter(
+        (l) => containsCI(l.name, q) || containsCI(l.company, q)
+      );
     }
-    if (statusFilter !== 'all') result = result.filter((l) => l.status === statusFilter);
+    if (statusFilter !== "all")
+      result = result.filter((l) => l.status === statusFilter);
 
     result = [...result].sort((a, b) => {
       let primary =
-        sortKey === 'score'
+        sortKey === "score"
           ? a.score - b.score
-          : a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-      if (primary === 0) primary = a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-      return sortDir === 'asc' ? primary : -primary;
+          : a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+      if (primary === 0)
+        primary = a.name.localeCompare(b.name, undefined, {
+          sensitivity: "base",
+        });
+      return sortDir === "asc" ? primary : -primary;
     });
 
     return result;

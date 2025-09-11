@@ -18,7 +18,7 @@ export function normalizeEmail(email: string): string {
 
 /** Return validation message for UI, or empty string if valid. */
 export function getEmailValidationMessage(email: string): string {
-  if (!email.trim()) return 'Email is required.';
-  if (!isValidEmail(email)) return 'Enter a valid email address.';
-  return '';
+  if (!email.trim()) return "Email is required.";
+  if (!isValidEmail(email)) return "Enter a valid email address.";
+  return "";
 }

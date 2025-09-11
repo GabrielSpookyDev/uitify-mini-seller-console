@@ -1,10 +1,10 @@
-export function Skeleton({ className = '' }: { className?: string }) {
+export function Skeleton({ className = "" }: { className?: string }) {
   return (
     <div
       className={[
-        'animate-shimmer rounded-md bg-zinc-200/50 relative',
+        "animate-shimmer rounded-md bg-zinc-200/50 relative",
         className,
-      ].join(' ')}
+      ].join(" ")}
       aria-hidden
     />
   );
