@@ -1,5 +1,3 @@
-// src/lib/delay.ts
-
 export interface LatencyOptions {
   fixedDelayMs?: number;
   minDelayMs?: number;

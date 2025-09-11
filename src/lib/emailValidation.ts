@@ -1,8 +1,3 @@
-// src/lib/email.ts
-
-/**
- * Minimal but reliable email validation.
- */
 export function isValidEmail(email: string): boolean {
   const normalized = email.trim();
   if (normalized.length < 6 || normalized.length > 254) return false;

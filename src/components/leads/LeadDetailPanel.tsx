@@ -1,4 +1,3 @@
-// src/components/leads/LeadDetailPanel.tsx
 import { useMemo, useState } from "react";
 import SlideOver from "@/components/overlays/SlideOver";
 import Input from "@/components/ui/Input";
