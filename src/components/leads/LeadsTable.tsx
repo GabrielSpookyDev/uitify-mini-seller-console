@@ -30,10 +30,7 @@ export default function LeadsTable() {
       </div>
     );
   }
-  // TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
-  // TODO: Fix horizontal scrolling
-  // TODO: Add sorting
-  // TODO: Add colors to numbers to indicate good/bad scores
+
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-2xl border border-zinc-200">

@@ -4,6 +4,7 @@ import {
   getInitialOpportunitiesState,
   opportunitiesReducer,
   persistOpportunities,
+  persistOpportunitiesView,
 } from "@/state/opps/useOpps";
 
 type Props = { children: React.ReactNode };
@@ -18,6 +19,10 @@ export default function OpportunitiesProvider({ children }: Readonly<Props>) {
   useEffect(() => {
     persistOpportunities(state.list);
   }, [state.list]);
+
+  useEffect(() => {
+    persistOpportunitiesView(state.view);
+  }, [state.view]);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
   return (

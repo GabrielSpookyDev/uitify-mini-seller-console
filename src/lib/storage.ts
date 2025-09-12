@@ -5,12 +5,15 @@ import type {
   SortKey,
   Lead,
   Opportunity,
+  OpportunityStage,
 } from "@/types/types";
+import type { OpportunitiesViewState } from "@/state/opps/useOpps";
 
 const STORAGE_NAMESPACE = "mini-seller-console";
 const LEADS_VIEW_KEY = `${STORAGE_NAMESPACE}:leads:view:v1`;
 const LEADS_KEY = `${STORAGE_NAMESPACE}:leads:v1`;
 const OPPORTUNITIES_KEY = `${STORAGE_NAMESPACE}:opportunities:v1`;
+const OPPORTUNITIES_VIEW_KEY = `${STORAGE_NAMESPACE}:opportunities:view:v1`;
 
 // ---------- Safe JSON helpers ----------
 
@@ -139,4 +142,43 @@ export function clearOpportunities(): void {
   } catch {
     // Ignore storage errors.
   }
+}
+
+// ---------- Opportunities view state persistence ----------
+
+function isValidStage(candidate: unknown): candidate is OpportunityStage | "all" {
+  return (
+    candidate === "all" ||
+    candidate === "prospecting" ||
+    candidate === "proposal" ||
+    candidate === "negotiation" ||
+    candidate === "won" ||
+    candidate === "lost"
+  );
+}
+
+function isValidOpportunitiesViewState(
+  candidate: unknown
+): candidate is OpportunitiesViewState {
+  if (!candidate || typeof candidate !== "object") return false;
+  const value = candidate as Partial<OpportunitiesViewState>;
+  return (
+    typeof value.searchTerm === "string" &&
+    isValidStage(value.stageFilter) &&
+    (value.sortDir === "asc" || value.sortDir === "desc")
+  );
+}
+
+export function loadOpportunitiesViewState(): OpportunitiesViewState | null {
+  const stored = readJson<unknown>(OPPORTUNITIES_VIEW_KEY, null);
+  return stored && isValidOpportunitiesViewState(stored) ? stored : null;
+}
+
+export function saveOpportunitiesViewState(state: OpportunitiesViewState): void {
+  const sanitizedState: OpportunitiesViewState = {
+    searchTerm: state.searchTerm ?? "",
+    stageFilter: isValidStage(state.stageFilter) ? state.stageFilter : "all",
+    sortDir: (state.sortDir === "asc" || state.sortDir === "desc") ? state.sortDir : "desc",
+  };
+  writeJson(OPPORTUNITIES_VIEW_KEY, sanitizedState);
 }

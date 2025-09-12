@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { useOpportunitiesState } from "@/state/opps/useOpps";
+import { useVisibleOpportunities } from "@/state/opps/useOpps";
 import Pagination from "@/components/ui/Pagination";
 
 export default function OpportunitiesTable() {
-  const { list } = useOpportunitiesState();
+  const list = useVisibleOpportunities();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -25,9 +25,7 @@ export default function OpportunitiesTable() {
       </div>
     );
   }
-  // TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
-  // TODO: Fix horizontal scrolling
-  // TODO: Add pagination and sorting
+
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-2xl border border-zinc-200">

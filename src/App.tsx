@@ -8,6 +8,7 @@ import LeadsToolbar from "@/components/leads/LeadsToolbar";
 import LeadsTable from "@/components/leads/LeadsTable";
 import LeadDetailPanel from "@/components/leads/LeadDetailPanel";
 import OpportunitiesTable from "@/components/opps/OpportunitiesTable";
+import OpportunitiesToolbar from "@/components/opps/OpportunitiesToolbar";
 import {
   HeroSkeleton,
   ToolbarSkeleton,
@@ -87,9 +88,14 @@ function AppContent() {
 
         <aside>
           <Card className="p-4 mt-8">
-            <h2 className="font-semibold text-zinc-900 md:text-xl">
-              Opportunities
-            </h2>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <h2 className="font-semibold text-zinc-900 md:text-xl">
+                Opportunities
+              </h2>
+              <div className="min-w-1/2">
+                <OpportunitiesToolbar />
+              </div>
+            </div>
             <div className="mt-3" />
             <OpportunitiesTable />
           </Card>
