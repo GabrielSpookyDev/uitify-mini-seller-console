@@ -144,8 +144,12 @@ function PanelContent({
     <SlideOver
       title={
         <div className="flex flex-col">
-          <span className="text-zinc-900">{lead.name}</span>
-          <span className="text-sm text-zinc-600">{lead.company}</span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-zinc-900">{lead.id}</span>
+            <span>-</span>
+            <span className="text-zinc-900">{lead.name}</span>
+          </div>
+          <span className="text-zinc-600 mt-1">{lead.company}</span>
         </div>
       }
       open
@@ -167,7 +171,6 @@ function PanelContent({
           </Button>
           <Button
             onClick={handleConvert}
-            variant="primary"
             disabled={pending !== "idle" || Boolean(emailError)}
             title="Convert this lead into an opportunity"
           >

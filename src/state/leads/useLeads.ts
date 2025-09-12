@@ -86,8 +86,8 @@ export function leadsReducer(
       };
 
     case "lead:update": {
-      const nextLeads = state.leads.map((l) =>
-        l.id === action.id ? { ...l, ...action.patch } : l
+      const nextLeads = state.leads.map((lead) =>
+        lead.id === action.id ? { ...lead, ...action.patch } : lead
       );
       return { ...state, leads: nextLeads };
     }
@@ -140,7 +140,7 @@ export function useLeadsActions() {
     setStatusFilter: (status: LeadStatus | "all") =>
       dispatch({ type: "view:setStatus", status }),
     setSort: (sortKey: SortKey, sortDir: SortDir) =>
-      dispatch({ type: "view:setSort", sortKey, sortDir }),
+      dispatch({ type: "view:setSort", sortKey, sortDir }), //TODO: Fix sort on: id, status, source
     selectLead: (leadId: string | null) =>
       dispatch({ type: "view:select", leadId }),
     updateLead: (id: string, patch: Partial<Lead>) =>
@@ -151,7 +151,7 @@ export function useLeadsActions() {
       amount?: number,
       stage: OpportunityStage = "prospecting"
     ) => {
-      const lead = state.leads.find((l) => l.id === leadId);
+      const lead = state.leads.find((lead) => lead.id === leadId);
       if (!lead) return;
 
       const opp: Opportunity = {
@@ -190,11 +190,11 @@ export function useVisibleLeads(): Lead[] {
     if (searchTerm.trim()) {
       const q = searchTerm.trim();
       result = result.filter(
-        (l) => containsCI(l.name, q) || containsCI(l.company, q)
+        (lead) => containsCI(lead.name, q) || containsCI(lead.company, q)
       );
     }
     if (statusFilter !== "all")
-      result = result.filter((l) => l.status === statusFilter);
+      result = result.filter((lead) => lead.status === statusFilter);
 
     result = [...result].sort((a, b) => {
       let primary =

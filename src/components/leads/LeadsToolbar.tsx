@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useLeadsActions, useLeadsState } from "@/state/leads/useLeads";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
-import Button from "@/components/ui/Button";
 import type { LeadStatus } from "@/types/types";
 
 const STATUS_OPTIONS: Array<LeadStatus | "all"> = [
@@ -16,7 +15,7 @@ const STATUS_OPTIONS: Array<LeadStatus | "all"> = [
 
 export default function LeadsToolbar() {
   const { view } = useLeadsState();
-  const { setSearch, setStatusFilter, setSort } = useLeadsActions();
+  const { setSearch, setStatusFilter } = useLeadsActions();
 
   const [searchInput, setSearchInput] = useState(view.searchTerm);
   const debounceRef = useRef<number | null>(null);
@@ -31,12 +30,9 @@ export default function LeadsToolbar() {
     };
   }, [searchInput, setSearch]);
 
-  const toggleSort = () =>
-    setSort("score", view.sortDir === "desc" ? "asc" : "desc");
-
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex flex-1 items-center gap-2">
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center justify-end">
+      <div className="flex items-end gap-2">
         <label htmlFor="lead-search" className="sr-only">
           Search leads
         </label>
@@ -60,22 +56,12 @@ export default function LeadsToolbar() {
           }
           aria-label="Filter by status"
         >
-          {STATUS_OPTIONS.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
+          {STATUS_OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {option}
             </option>
           ))}
         </Select>
-
-        <Button
-          type="button"
-          onClick={toggleSort}
-          variant="secondary"
-          title="Toggle sort by score"
-        >
-          Score {view.sortDir === "desc" ? "↓" : "↑"}{" "}
-          {/* TODO: Update this into better Chevron Icons */}
-        </Button>
       </div>
     </div>
   );

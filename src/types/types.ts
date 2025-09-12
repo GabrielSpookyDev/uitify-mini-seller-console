@@ -35,7 +35,15 @@ export interface Opportunity {
 }
 
 // ---- UI & Sorting ----
-export type SortKey = "score" | "name";
+export type SortKey =
+  | "id"
+  | "name"
+  | "company"
+  | "email"
+  | "source"
+  | "score"
+  | "status";
+
 export type SortDir = "asc" | "desc";
 
 export interface LeadsViewState {

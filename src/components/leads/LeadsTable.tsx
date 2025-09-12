@@ -33,6 +33,7 @@ export default function LeadsTable() {
   // TODO: Improve accessibility (e.g., keyboard navigation, screen reader support)
   // TODO: Fix horizontal scrolling
   // TODO: Add sorting
+  // TODO: Add colors to numbers to indicate good/bad scores
   return (
     <div className="space-y-3">
       <div className="overflow-hidden rounded-2xl border border-zinc-200">
@@ -40,7 +41,8 @@ export default function LeadsTable() {
           <table className="min-w-full table-fixed" role="table">
             <thead className="sticky top-0 z-10 bg-zinc-50/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-50/75">
               <tr className="text-left text-sm text-zinc-600">
-                <th className="px-3 py-2 w-40">Name</th>
+                <th className="px-3 py-2 w-40">ID</th>
+                <th className="flex px-3 py-2 w-40">Name</th>
                 <th className="px-3 py-2 w-40">Company</th>
                 <th className="px-3 py-2">Email</th>
                 <th className="px-3 py-2 w-20">Source</th>
@@ -101,6 +103,7 @@ const LeadRow = memo(function LeadRow({
       onClick={() => selectLead(lead.id)}
       aria-label={`Open details for ${lead.name}`}
     >
+      <td className="px-3 py-2 text-sm font-medium text-zinc-900">{lead.id}</td>
       <td className="px-3 py-2 text-sm font-medium text-zinc-900">
         {lead.name}
       </td>

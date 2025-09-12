@@ -72,18 +72,23 @@ function AppContent() {
     <main className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
       <Header />
 
-      <section className="mx-auto max-w-6xl px-4 py-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+      <section className="flex flex-col mx-auto max-w-6xl px-4 py-6">
+        <div>
           <Card className="p-4">
-            <LeadsToolbar />
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <h2 className="font-semibold text-zinc-900 md:text-xl">Leads</h2>
+              <div className="min-w-1/2">
+                <LeadsToolbar />
+              </div>
+            </div>
             <div className="mt-3" />
             <LeadsTable />
           </Card>
         </div>
 
-        <aside className="lg:col-span-1">
-          <Card className="p-4">
-            <h2 className="text-sm font-semibold text-zinc-900">
+        <aside>
+          <Card className="p-4 mt-8">
+            <h2 className="font-semibold text-zinc-900 md:text-xl">
               Opportunities
             </h2>
             <div className="mt-3" />

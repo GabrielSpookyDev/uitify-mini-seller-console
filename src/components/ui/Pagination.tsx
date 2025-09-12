@@ -1,4 +1,5 @@
 import React from "react";
+import Select from "./Select";
 
 type Props = {
   page: number;
@@ -30,7 +31,7 @@ export default function Pagination({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="text-sm text-zinc-600">
-        Showing <span className="font-medium">{start}</span>-
+        Showing <span className="font-medium">{start}</span> -{" "}
         <span className="font-medium">{end}</span> of{" "}
         <span className="font-medium">{totalItems}</span>
       </div>
@@ -39,10 +40,10 @@ export default function Pagination({
         {onPageSizeChange && (
           <label className="flex items-center gap-2 text-sm text-zinc-700">
             <span>Rows</span>
-            <select
+            <Select
               value={pageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
-              className="rounded-xl border border-zinc-300 bg-white px-2.5 py-1.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+              className="rounded-xl border border-zinc-300 bg-white px-2.5 py-1.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 hover:cursor-pointer"
               aria-label="Rows per page"
             >
               {pageSizeOptions.map((opt) => (
@@ -50,7 +51,7 @@ export default function Pagination({
                   {opt}
                 </option>
               ))}
-            </select>
+            </Select>
           </label>
         )}
 
@@ -117,7 +118,7 @@ function IconButton({
         "inline-flex h-9 w-9 items-center justify-center rounded-full border text-zinc-700",
         "border-zinc-300 bg-white shadow-sm hover:bg-zinc-50",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
-        "disabled:opacity-40 disabled:hover:bg-white",
+        "disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed hover:cursor-pointer",
       ].join(" ")}
     >
       {Icon({ className: "h-4 w-4", "aria-hidden": true })}

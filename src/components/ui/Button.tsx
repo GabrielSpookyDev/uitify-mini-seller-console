@@ -30,7 +30,7 @@ export default function Button({
       {...props}
       className={[
         "inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-medium",
-        "transition-colors focus-visible:outline-none focus-visible:ring-2",
+        "transition-colors focus-visible:outline-none focus-visible:ring-2 hover:cursor-pointer",
         styles[variant],
         className,
       ].join(" ")}

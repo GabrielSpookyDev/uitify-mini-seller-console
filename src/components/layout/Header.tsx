@@ -14,7 +14,7 @@ function StatChip({
 }
 
 export default function Header() {
-  const { view, leads } = useLeadsState();
+  const { leads } = useLeadsState();
   const visibleLeads = useVisibleLeads();
 
   return (
@@ -29,19 +29,15 @@ export default function Header() {
             <h1 className="text-3xl font-semibold tracking-tight">
               Mini Seller Console
             </h1>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-indigo-100/90">
-              Triage leads and convert them into opportunities. Local-first,
-              fast, and beautiful.
+            <p className="mt-2 max-w-xl leading-6 text-indigo-100/90">
+              Triage leads and convert them into opportunities.
+              <br />
+              Local-first, fast, and beautiful.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <StatChip label="Leads" value={leads.length} />
-            <StatChip label="Visible" value={visibleLeads.length} />
-            <StatChip
-              label="Sort"
-              value={`${view.sortKey} ${view.sortDir === "desc" ? "↓" : "↑"}`}
-            />
-            <StatChip label="Status" value={view.statusFilter} />
+            <StatChip label="Filtered Leads" value={visibleLeads.length} />
           </div>
         </div>
       </div>
