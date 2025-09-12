@@ -38,6 +38,7 @@ export default function LeadDetailPanel({
 
   const [email, setEmail] = useState(selectedLead.email);
   const [status, setStatus] = useState<LeadStatus>(selectedLead.status);
+  const [amount, setAmount] = useState<string>("");
   const [pending, setPending] = useState<"idle" | "saving" | "converting">(
     "idle"
   );
@@ -88,6 +89,7 @@ export default function LeadDetailPanel({
   function handleCancel() {
     setEmail(selectedLead.email);
     setStatus(selectedLead.status);
+    setAmount("");
     setErrorMsg("");
     closePanel();
   }
@@ -113,7 +115,7 @@ export default function LeadDetailPanel({
         id: generateUuidV4(),
         name: selectedLead.name,
         stage: "prospecting",
-        amount: undefined,
+        amount: amount ? parseFloat(amount) : undefined,
         accountName: selectedLead.company,
         leadId: selectedLead.id,
         createdAt: new Date().toISOString(),
@@ -240,6 +242,24 @@ export default function LeadDetailPanel({
                   </Select>
                   <Badge tone={tone}>{status}</Badge>
                 </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="opportunity-amount"
+                  className="text-sm font-medium text-zinc-900"
+                >
+                  Opportunity Amount (Optional)
+                </label>
+                <Input
+                  id="opportunity-amount"
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="0.00"
+                  min="0"
+                  step="0.01"
+                />
               </div>
 
               <div className="pt-2 text-xs text-zinc-500">

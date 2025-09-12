@@ -35,11 +35,11 @@ export default function OpportunitiesTable() {
           <table className="min-w-full table-fixed">
             <thead className="sticky top-0 z-10 bg-zinc-50/95 backdrop-blur">
               <tr className="text-left text-sm text-zinc-600">
+                <th className="px-3 py-2 w-32">ID</th>
                 <th className="px-3 py-2 w-56">Name</th>
-                <th className="px-3 py-2 w-40">Account</th>
                 <th className="px-3 py-2 w-32">Stage</th>
                 <th className="px-3 py-2 w-28">Amount</th>
-                <th className="px-3 py-2 w-40">Created</th>
+                <th className="px-3 py-2 w-40">Account Name</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-100">
@@ -54,12 +54,14 @@ export default function OpportunitiesTable() {
                   className="odd:bg-white even:bg-zinc-50/50"
                 >
                   <td className="px-3 py-2 text-sm font-medium text-zinc-900">
+                    {opp.id.slice(0, 8)}...
+                  </td>
+                  <td className="px-3 py-2 text-sm font-medium text-zinc-900">
                     {opp.name}
                   </td>
-                  <td className="px-3 py-2 text-sm text-zinc-800">
-                    {opp.accountName}
+                  <td className="px-3 py-2 text-sm text-zinc-700">
+                    {opp.stage}
                   </td>
-                  <td className="px-3 py-2 text-sm text-zinc-700">{opp.stage}</td>
                   <td className="px-3 py-2 text-sm tabular-nums">
                     {opp.amount != null
                       ? new Intl.NumberFormat(undefined, {
@@ -68,8 +70,8 @@ export default function OpportunitiesTable() {
                         }).format(opp.amount)
                       : "—"}
                   </td>
-                  <td className="px-3 py-2 text-sm text-zinc-700">
-                    {new Date(opp.createdAt).toLocaleString()}
+                  <td className="px-3 py-2 text-sm text-zinc-800">
+                    {opp.accountName}
                   </td>
                 </motion.tr>
               ))}

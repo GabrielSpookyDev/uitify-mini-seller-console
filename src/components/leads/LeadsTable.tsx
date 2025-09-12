@@ -39,7 +39,7 @@ export default function LeadsTable() {
       <div className="overflow-hidden rounded-2xl border border-zinc-200">
         <div className="max-h-[70vh] overflow-auto">
           <table className="min-w-full table-fixed" role="table">
-            <thead className="sticky top-0 z-10 bg-zinc-50/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-50/75">
+            <thead className="sticky top-0 z-10 bg-zinc-50/95 backdrop-blur ">
               <tr className="text-left text-sm text-zinc-600">
                 <th className="px-3 py-2 w-40">ID</th>
                 <th className="flex px-3 py-2 w-40">Name</th>
