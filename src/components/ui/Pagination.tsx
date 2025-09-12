@@ -1,5 +1,11 @@
-import React from "react";
-import Select from "./Select";
+import Select from "@/components/ui/Select";
+import IconButton from "@/components/ui/IconButton";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 
 type Props = {
   page: number;
@@ -46,9 +52,9 @@ export default function Pagination({
               className="rounded-xl border border-zinc-300 bg-white px-2.5 py-1.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 hover:cursor-pointer"
               aria-label="Rows per page"
             >
-              {pageSizeOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
+              {pageSizeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
                 </option>
               ))}
             </Select>
@@ -60,16 +66,14 @@ export default function Pagination({
           aria-label="Pagination"
         >
           <IconButton
-            label="First page"
             disabled={!canPrev}
             onClick={() => goToPage(1)}
-            icon={ChevronDoubleLeftIcon}
+            icon={ChevronsLeft}
           />
           <IconButton
-            label="Previous page"
             disabled={!canPrev}
             onClick={() => goToPage(page - 1)}
-            icon={ChevronLeftIcon}
+            icon={ChevronLeft}
           />
 
           <span className="mx-2 min-w-[6rem] text-center text-sm text-zinc-700">
@@ -77,108 +81,17 @@ export default function Pagination({
           </span>
 
           <IconButton
-            label="Next page"
             disabled={!canNext}
             onClick={() => goToPage(page + 1)}
-            icon={ChevronRightIcon}
+            icon={ChevronRight}
           />
           <IconButton
-            label="Last page"
             disabled={!canNext}
             onClick={() => goToPage(totalPages)}
-            icon={ChevronDoubleRightIcon}
+            icon={ChevronsRight}
           />
         </nav>
       </div>
     </div>
-  );
-}
-
-type IconRender = (props: React.SVGProps<SVGSVGElement>) => React.ReactNode;
-
-function IconButton({
-  label,
-  onClick,
-  disabled,
-  icon: Icon,
-}: Readonly<{
-  label: string;
-  onClick: () => void;
-  disabled?: boolean;
-  icon: IconRender;
-}>) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      title={label}
-      aria-label={label}
-      className={[
-        "inline-flex h-9 w-9 items-center justify-center rounded-full border text-zinc-700",
-        "border-zinc-300 bg-white shadow-sm hover:bg-zinc-50",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
-        "disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed hover:cursor-pointer",
-      ].join(" ")}
-    >
-      {Icon({ className: "h-4 w-4", "aria-hidden": true })}
-    </button>
-  );
-}
-
-function ChevronLeftIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      {...props}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15l-5-5 5-5" />
-    </svg>
-  );
-}
-function ChevronRightIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      {...props}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 5l5 5-5 5" />
-    </svg>
-  );
-}
-function ChevronDoubleLeftIcon(props: Readonly<React.SVGProps<SVGSVGElement>>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      {...props}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M18 19l-7-7 7-7" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M11 19l-7-7 7-7" />
-    </svg>
-  );
-}
-function ChevronDoubleRightIcon(
-  props: Readonly<React.SVGProps<SVGSVGElement>>
-) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      {...props}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 5l7 7-7 7" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7" />
-    </svg>
   );
 }

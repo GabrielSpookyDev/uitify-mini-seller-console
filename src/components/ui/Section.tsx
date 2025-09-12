@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "@/components/ui/Card";
 
-export function Section({
+export default function Section({
   title,
   children,
 }: Readonly<{ title: string; children: React.ReactNode }>) {
