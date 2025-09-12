@@ -1,69 +1,76 @@
-# React + TypeScript + Vite
+# Mini Seller Console
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight React application for managing leads and opportunities in a sales pipeline. Built with modern web technologies for optimal performance and user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📋 Lead Management
+- **Lead List**: View and manage 100+ leads with pagination
+- **Search & Filter**: Find leads by name/company and filter by status
+- **Sorting**: Sort leads by score (ascending/descending)
+- **Lead Details**: Edit lead information with real-time validation
+- **Status Tracking**: Update lead status through the sales pipeline
 
-## Expanding the ESLint configuration
+### 💼 Opportunity Management
+- **Lead Conversion**: Convert qualified leads into opportunities
+- **Opportunity Pipeline**: Track opportunities through sales stages
+- **Financial Tracking**: Manage deal amounts and revenue forecasting
+- **Search & Filter**: Find opportunities by name/account and filter by stage
+- **Sorting**: Sort opportunities by deal amount
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🎨 User Experience
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Smooth Animations**: Motion-powered transitions and interactions
+- **Loading States**: Skeleton screens during data loading
+- **Error Handling**: Graceful error states with recovery options
+- **Persistent Settings**: Filters, sorting, and pagination persist across sessions
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend**: React 19 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Animations**: Motion (Framer Motion)
+- **Icons**: Lucide React
+- **State Management**: React Context + useReducer
+- **Data Persistence**: localStorage
+- **Development**: ESLint + TypeScript strict mode
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── leads/          # Lead-specific components
+│   ├── opps/           # Opportunity-specific components
+│   └── ui/             # Generic UI components
+├── data/               # Static JSON data
+├── lib/                # Utility functions
+├── state/              # State management
+└── types/              # TypeScript type definitions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **100 Sample Leads**: Pre-loaded with realistic sales data
+- **Simulated Network Latency**: Realistic loading and error states
+- **Optimistic Updates**: Immediate UI feedback with rollback on failure
+- **Mobile-First Design**: Responsive layouts for all screen sizes
+- **Accessibility**: ARIA labels and keyboard navigation support
