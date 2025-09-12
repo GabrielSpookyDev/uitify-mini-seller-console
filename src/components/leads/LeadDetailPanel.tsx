@@ -28,9 +28,9 @@ const STATUS_OPTIONS: Array<LeadStatus> = [
 
 export default function LeadDetailPanel({
   selectedLead,
-}: {
+}: Readonly<{
   selectedLead: Lead;
-}) {
+}>) {
   const { updateLead } = useLeadsActions();
   const { add: addOpportunity } = useOpportunitiesActions();
   const closePanel = useLeadsActions().selectLead.bind(null, null);
