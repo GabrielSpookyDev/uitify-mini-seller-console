@@ -5,7 +5,7 @@ import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
-import { X } from "lucide-react";
+import { X, Mail, User, Tag, DollarSign } from "lucide-react";
 import { useLeadsActions } from "@/state/leads/useLeads";
 import {
   isValidEmail,
@@ -36,6 +36,8 @@ export default function LeadDetailPanel({
   const closePanel = useLeadsActions().selectLead.bind(null, null);
   const panelRef = useRef<HTMLDivElement | null>(null);
 
+  const [name, setName] = useState(selectedLead.name);
+  const [company, setCompany] = useState(selectedLead.company);
   const [email, setEmail] = useState(selectedLead.email);
   const [status, setStatus] = useState<LeadStatus>(selectedLead.status);
   const [amount, setAmount] = useState<string>("");
@@ -61,13 +63,21 @@ export default function LeadDetailPanel({
 
   const emailError = getEmailValidationMessage(email);
   const isDirty =
-    email !== selectedLead.email || status !== selectedLead.status;
+    name !== selectedLead.name ||
+    company !== selectedLead.company ||
+    email !== selectedLead.email ||
+    status !== selectedLead.status;
 
   async function handleSave() {
     if (emailError) return;
     setPending("saving");
     setErrorMsg("");
-    const patch: Partial<Lead> = { email: normalizeEmail(email), status };
+    const patch: Partial<Lead> = {
+      name,
+      company,
+      email: normalizeEmail(email),
+      status,
+    };
     const previous = { ...selectedLead };
 
     updateLead(selectedLead.id, patch);
@@ -87,6 +97,8 @@ export default function LeadDetailPanel({
   }
 
   function handleCancel() {
+    setName(selectedLead.name);
+    setCompany(selectedLead.company);
     setEmail(selectedLead.email);
     setStatus(selectedLead.status);
     setAmount("");
@@ -113,10 +125,10 @@ export default function LeadDetailPanel({
 
       const opp: Opportunity = {
         id: generateUuidV4(),
-        name: selectedLead.name,
+        name,
         stage: "prospecting",
         amount: amount ? parseFloat(amount) : undefined,
-        accountName: selectedLead.company,
+        accountName: company,
         leadId: selectedLead.id,
         createdAt: new Date().toISOString(),
       };
@@ -191,75 +203,136 @@ export default function LeadDetailPanel({
           </div>
 
           <div className="flex-1 overflow-auto px-4 py-3">
-            <div className="space-y-4">
+            <div className="space-y-6">
               {errorMsg && (
                 <div className="rounded-md border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
                   {errorMsg}
                 </div>
               )}
 
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="lead-email"
-                  className="text-sm font-medium text-zinc-900"
-                >
-                  Email
-                </label>
-                <Input
-                  id="lead-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  aria-invalid={Boolean(emailError)}
-                  placeholder="name@company.com"
-                />
-                {emailError && (
-                  <p id="email-error" className="text-xs text-rose-600">
-                    {emailError}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="lead-status"
-                  className="text-sm font-medium text-zinc-900"
-                >
-                  Status
-                </label>
-                <div className="flex items-center gap-2">
-                  <Select
-                    id="lead-status"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value as LeadStatus)}
-                    aria-label="Update lead status"
-                  >
-                    {STATUS_OPTIONS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </Select>
-                  <Badge tone={tone}>{status}</Badge>
+              {/* Lead Details */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-zinc-900">
+                  <User className="h-4 w-4" />
+                  <span>Lead Details</span>
+                </div>
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="lead-name"
+                      className="text-sm font-medium text-zinc-900"
+                    >
+                      Name
+                    </label>
+                    <Input
+                      id="lead-name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Lead name"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="lead-company"
+                      className="text-sm font-medium text-zinc-900"
+                    >
+                      Company
+                    </label>
+                    <Input
+                      id="lead-company"
+                      type="text"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Company name"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label
-                  htmlFor="opportunity-amount"
-                  className="text-sm font-medium text-zinc-900"
-                >
-                  Opportunity Amount (Optional)
-                </label>
-                <Input
-                  id="opportunity-amount"
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="0.00"
-                  min="0"
-                  step="0.01"
-                />
+              {/* Contact Information */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-zinc-900">
+                  <Mail className="h-4 w-4" />
+                  <span>Contact Information</span>
+                </div>
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="lead-email"
+                    className="text-sm font-medium text-zinc-900"
+                  >
+                    Email
+                  </label>
+                  <Input
+                    id="lead-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    aria-invalid={Boolean(emailError)}
+                    placeholder="name@company.com"
+                  />
+                  {emailError && (
+                    <p id="email-error" className="text-xs text-rose-600">
+                      {emailError}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Lead Status */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-zinc-900">
+                  <Tag className="h-4 w-4" />
+                  <span>Lead Status</span>
+                </div>
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="lead-status"
+                    className="text-sm font-medium text-zinc-900"
+                  >
+                    Status
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <Select
+                      id="lead-status"
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value as LeadStatus)}
+                      aria-label="Update lead status"
+                    >
+                      {STATUS_OPTIONS.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </Select>
+                    <Badge tone={tone}>{status}</Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opportunity Details */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-zinc-900">
+                  <DollarSign className="h-4 w-4" />
+                  <span>Opportunity Details</span>
+                </div>
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="opportunity-amount"
+                    className="text-sm font-medium text-zinc-900"
+                  >
+                    Amount (Optional)
+                  </label>
+                  <Input
+                    id="opportunity-amount"
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
               </div>
 
               <div className="pt-2 text-xs text-zinc-500">
@@ -286,10 +359,22 @@ export default function LeadDetailPanel({
               </Button>
               <Button
                 onClick={handleConvert}
-                disabled={pending !== "idle" || Boolean(emailError)}
-                title="Convert this lead into an opportunity"
+                disabled={
+                  pending !== "idle" ||
+                  Boolean(emailError) ||
+                  selectedLead.status === "converted"
+                }
+                title={
+                  selectedLead.status === "converted"
+                    ? "Lead already converted"
+                    : "Convert this lead into an opportunity"
+                }
               >
-                {pending === "converting" ? "Converting…" : "Convert Lead"}
+                {pending === "converting"
+                  ? "Converting…"
+                  : selectedLead.status === "converted"
+                  ? "Already Converted"
+                  : "Convert Lead"}
               </Button>
             </div>
           </div>
