@@ -6,6 +6,8 @@ import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
 import { X, Mail, User, Tag, DollarSign } from "lucide-react";
 import { useLeadsActions } from "@/state/leads/useLeads";
+import Badge from "@/components/ui/Badge";
+import getTone from "@/lib/getTone";
 import {
   isValidEmail,
   normalizeEmail,
@@ -43,6 +45,12 @@ export default function LeadDetailPanel({
     "idle"
   );
   const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return "text-green-600";
+    if (score >= 70) return "text-yellow-600";
+    return "text-red-600";
+  };
 
   // ESC closes
   useEffect(() => {
@@ -182,13 +190,19 @@ export default function LeadDetailPanel({
             <div className="flex flex-col">
               <div
                 id="slideover-title"
-                className="flex items-baseline gap-2 text-base font-semibold text-zinc-900"
+                className="flex items-baseline gap-2 text-base font-semibold text-zinc-900 max-w-xs"
+                title={`${selectedLead.id} - Lead Details`}
               >
-                <span>{selectedLead.id}</span>
+                <span className="truncate">{selectedLead.id}</span>
                 <span>-</span>
-                <span>{selectedLead.name}</span>
+                <span className="truncate">Lead Details</span>
               </div>
-              <span className="text-zinc-600 mt-1">{selectedLead.company}</span>
+              <div className="flex items-center gap-3 mt-1">
+                <Badge tone={getTone(selectedLead.status)}>{selectedLead.status}</Badge>
+                <span className={`text-sm font-medium ${getScoreColor(selectedLead.score)}`}>
+                  Score: {selectedLead.score}
+                </span>
+              </div>
             </div>
             <Button
               variant="ghost"

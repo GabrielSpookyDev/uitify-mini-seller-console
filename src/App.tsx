@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import LeadsProvider from "@/state/leads/LeadsProvider";
 import { useLeadsState } from "@/state/leads/useLeads";
+import { useOpportunitiesState } from "@/state/opps/useOpps";
 import { AnimatePresence } from "motion/react";
 import Header from "@/components/layout/Header";
 import Card from "@/components/ui/Card";
@@ -9,6 +10,7 @@ import LeadsTable from "@/components/leads/LeadsTable";
 import LeadDetailPanel from "@/components/leads/LeadDetailPanel";
 import OpportunitiesTable from "@/components/opps/OpportunitiesTable";
 import OpportunitiesToolbar from "@/components/opps/OpportunitiesToolbar";
+import OpportunityDetailPanel from "@/components/opps/OpportunityDetailPanel";
 import {
   HeroSkeleton,
   ToolbarSkeleton,
@@ -106,7 +108,27 @@ function AppContent() {
           <LeadDetailPanel key={selectedLead.id} selectedLead={selectedLead} />
         )}
       </AnimatePresence>
+      <OpportunityPanelWrapper />
     </main>
+  );
+}
+
+function OpportunityPanelWrapper() {
+  const { view, list } = useOpportunitiesState();
+  const selectedOpportunity = useMemo(
+    () => list.find((opp) => opp.id === view.selectedOpportunityId) || null,
+    [list, view.selectedOpportunityId]
+  );
+
+  return (
+    <AnimatePresence>
+      {selectedOpportunity && (
+        <OpportunityDetailPanel
+          key={selectedOpportunity.id}
+          selectedOpportunity={selectedOpportunity}
+        />
+      )}
+    </AnimatePresence>
   );
 }
 

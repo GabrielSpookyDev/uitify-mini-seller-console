@@ -6,12 +6,14 @@ export interface OpportunitiesViewState {
   searchTerm: string;
   stageFilter: OpportunityStage | "all";
   sortDir: "asc" | "desc";
+  selectedOpportunityId: string | null;
 }
 
 const DEFAULT_OPPORTUNITIES_VIEW_STATE: OpportunitiesViewState = {
   searchTerm: "",
   stageFilter: "all",
   sortDir: "desc",
+  selectedOpportunityId: null,
 };
 
 export type OpportunitiesState = {
@@ -26,7 +28,9 @@ export type OppsAction =
   | { type: "opps:reset" }
   | { type: "view:setSearch"; searchTerm: string }
   | { type: "view:setStage"; stage: OpportunityStage | "all" }
-  | { type: "view:setSort"; sortDir: "asc" | "desc" };
+  | { type: "view:setSort"; sortDir: "asc" | "desc" }
+  | { type: "view:select"; opportunityId: string | null }
+  | { type: "opp:update"; id: string; patch: Partial<Opportunity> };
 
 export function getInitialOpportunitiesState(): OpportunitiesState {
   const persisted = loadOpportunities();
@@ -64,6 +68,17 @@ export function opportunitiesReducer(
       return { ...state, view: { ...state.view, stageFilter: action.stage } };
     case "view:setSort":
       return { ...state, view: { ...state.view, sortDir: action.sortDir } };
+    case "view:select":
+      return {
+        ...state,
+        view: { ...state.view, selectedOpportunityId: action.opportunityId },
+      };
+    case "opp:update": {
+      const nextList = state.list.map((opp) =>
+        opp.id === action.id ? { ...opp, ...action.patch } : opp
+      );
+      return { ...state, list: nextList };
+    }
     default:
       return state;
   }
@@ -113,6 +128,10 @@ export function useOpportunitiesActions() {
       dispatch({ type: "view:setStage", stage }),
     setSort: (sortDir: "asc" | "desc") =>
       dispatch({ type: "view:setSort", sortDir }),
+    selectOpportunity: (opportunityId: string | null) =>
+      dispatch({ type: "view:select", opportunityId }),
+    updateOpportunity: (id: string, patch: Partial<Opportunity>) =>
+      dispatch({ type: "opp:update", id, patch }),
   };
 }
 

@@ -165,7 +165,8 @@ function isValidOpportunitiesViewState(
   return (
     typeof value.searchTerm === "string" &&
     isValidStage(value.stageFilter) &&
-    (value.sortDir === "asc" || value.sortDir === "desc")
+    (value.sortDir === "asc" || value.sortDir === "desc") &&
+    (value.selectedOpportunityId === null || typeof value.selectedOpportunityId === "string")
   );
 }
 
@@ -179,6 +180,7 @@ export function saveOpportunitiesViewState(state: OpportunitiesViewState): void 
     searchTerm: state.searchTerm ?? "",
     stageFilter: isValidStage(state.stageFilter) ? state.stageFilter : "all",
     sortDir: (state.sortDir === "asc" || state.sortDir === "desc") ? state.sortDir : "desc",
+    selectedOpportunityId: state.selectedOpportunityId ?? null,
   };
   writeJson(OPPORTUNITIES_VIEW_KEY, sanitizedState);
 }

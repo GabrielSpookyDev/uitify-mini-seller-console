@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, memo } from "react";
 import { motion } from "motion/react";
-import { useVisibleOpportunities } from "@/state/opps/useOpps";
+import { useVisibleOpportunities, useOpportunitiesActions } from "@/state/opps/useOpps";
 import Pagination from "@/components/ui/Pagination";
+import type { Opportunity } from "@/types/types";
 
 export default function OpportunitiesTable() {
   const list = useVisibleOpportunities();
@@ -42,36 +43,7 @@ export default function OpportunitiesTable() {
             </thead>
             <tbody className="divide-y divide-zinc-100">
               {pageItems.map((opp) => (
-                <motion.tr
-                  key={opp.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="odd:bg-white even:bg-zinc-50/50"
-                >
-                  <td className="px-3 py-2 text-sm font-medium text-zinc-900">
-                    {opp.id.slice(0, 8)}...
-                  </td>
-                  <td className="px-3 py-2 text-sm font-medium text-zinc-900">
-                    {opp.name}
-                  </td>
-                  <td className="px-3 py-2 text-sm text-zinc-700">
-                    {opp.stage}
-                  </td>
-                  <td className="px-3 py-2 text-sm tabular-nums">
-                    {opp.amount != null
-                      ? new Intl.NumberFormat(undefined, {
-                          style: "currency",
-                          currency: "USD",
-                        }).format(opp.amount)
-                      : "—"}
-                  </td>
-                  <td className="px-3 py-2 text-sm text-zinc-800">
-                    {opp.accountName}
-                  </td>
-                </motion.tr>
+                <OpportunityRow key={opp.id} opportunity={opp} />
               ))}
             </tbody>
           </table>
@@ -91,3 +63,43 @@ export default function OpportunitiesTable() {
     </div>
   );
 }
+
+const OpportunityRow = memo(function OpportunityRow({
+  opportunity,
+}: {
+  opportunity: Opportunity;
+}) {
+  const { selectOpportunity } = useOpportunitiesActions();
+
+  return (
+    <motion.tr
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
+      className="odd:bg-white even:bg-zinc-50/50 hover:bg-indigo-50/50 cursor-pointer"
+      onClick={() => selectOpportunity(opportunity.id)}
+      aria-label={`Open details for ${opportunity.name}`}
+    >
+      <td className="px-3 py-2 text-sm font-medium text-zinc-900" title={opportunity.id}>
+        {opportunity.id.slice(0, 8)}...
+      </td>
+      <td className="px-3 py-2 text-sm font-medium text-zinc-900">
+        {opportunity.name}
+      </td>
+      <td className="px-3 py-2 text-sm text-zinc-700">{opportunity.stage}</td>
+      <td className="px-3 py-2 text-sm tabular-nums">
+        {opportunity.amount != null
+          ? new Intl.NumberFormat(undefined, {
+              style: "currency",
+              currency: "USD",
+            }).format(opportunity.amount)
+          : "—"}
+      </td>
+      <td className="px-3 py-2 text-sm text-zinc-800">
+        {opportunity.accountName}
+      </td>
+    </motion.tr>
+  );
+});
