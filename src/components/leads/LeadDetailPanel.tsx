@@ -13,7 +13,7 @@ import {
 import { simulateNetworkLatency } from "@/lib/delay";
 import { generateUuidV4 } from "@/lib/id";
 import { useOpportunitiesActions } from "@/state/opps/useOpps";
-import type { Tone } from "@/components/ui/Badge";
+import getTone from "@/lib/getTone";
 import type { Lead, LeadStatus, Opportunity } from "@/types/types";
 
 const STATUS_OPTIONS: Array<LeadStatus> = [
@@ -120,21 +120,6 @@ function PanelContent({
       updateLead(lead.id, previous); // rollback
       setErrorMsg("Conversion failed. Changes were rolled back.");
       setPending("idle");
-    }
-  }
-
-  function getTone(status: LeadStatus): Tone {
-    switch (status) {
-      case "qualified":
-        return "green";
-      case "contacted":
-        return "amber";
-      case "new":
-        return "indigo";
-      case "unqualified":
-        return "rose";
-      default:
-        return "neutral";
     }
   }
 

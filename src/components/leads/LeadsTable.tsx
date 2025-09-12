@@ -2,8 +2,7 @@ import { memo, useMemo, useState } from "react";
 import { useLeadsActions, useVisibleLeads } from "@/state/leads/useLeads";
 import Pagination from "@/components/ui/Pagination";
 import Badge from "@/components/ui/Badge";
-
-import type { Tone } from "@/components/ui/Badge";
+import getTone from "@/lib/getTone";
 
 export default function LeadsTable() {
   const allLeads = useVisibleLeads();
@@ -79,23 +78,7 @@ const LeadRow = memo(function LeadRow({
   lead: ReturnType<typeof useVisibleLeads>[number];
 }) {
   const { selectLead } = useLeadsActions();
-  let tone: Tone;
-  switch (lead.status) {
-    case "qualified":
-      tone = "green";
-      break;
-    case "contacted":
-      tone = "amber";
-      break;
-    case "new":
-      tone = "indigo";
-      break;
-    case "unqualified":
-      tone = "rose";
-      break;
-    default:
-      tone = "neutral";
-  }
+  const tone = getTone(lead.status);
 
   return (
     <tr
