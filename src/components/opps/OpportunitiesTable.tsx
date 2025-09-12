@@ -1,13 +1,19 @@
 import { useMemo, useState, memo } from "react";
 import { motion } from "motion/react";
-import { useVisibleOpportunities, useOpportunitiesActions } from "@/state/opps/useOpps";
+import {
+  useVisibleOpportunities,
+  useOpportunitiesActions,
+  useOpportunitiesState,
+} from "@/state/opps/useOpps";
 import Pagination from "@/components/ui/Pagination";
 import type { Opportunity } from "@/types/types";
 
 export default function OpportunitiesTable() {
   const list = useVisibleOpportunities();
+  const { view } = useOpportunitiesState();
+  const { setPageSize } = useOpportunitiesActions();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = view.pageSize;
 
   const total = list.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
@@ -38,7 +44,7 @@ export default function OpportunitiesTable() {
                 <th className="px-3 py-2 w-56">Name</th>
                 <th className="px-3 py-2 w-32">Stage</th>
                 <th className="px-3 py-2 w-28">Amount</th>
-                <th className="px-3 py-2 w-40">Account Name</th>
+                <th className="px-3 py-2 w-40">Account</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-100">
@@ -82,7 +88,10 @@ const OpportunityRow = memo(function OpportunityRow({
       onClick={() => selectOpportunity(opportunity.id)}
       aria-label={`Open details for ${opportunity.name}`}
     >
-      <td className="px-3 py-2 text-sm font-medium text-zinc-900" title={opportunity.id}>
+      <td
+        className="px-3 py-2 text-sm font-medium text-zinc-900"
+        title={opportunity.id}
+      >
         {opportunity.id.slice(0, 8)}...
       </td>
       <td className="px-3 py-2 text-sm font-medium text-zinc-900">

@@ -7,6 +7,7 @@ export interface OpportunitiesViewState {
   stageFilter: OpportunityStage | "all";
   sortDir: "asc" | "desc";
   selectedOpportunityId: string | null;
+  pageSize: number;
 }
 
 const DEFAULT_OPPORTUNITIES_VIEW_STATE: OpportunitiesViewState = {
@@ -14,6 +15,7 @@ const DEFAULT_OPPORTUNITIES_VIEW_STATE: OpportunitiesViewState = {
   stageFilter: "all",
   sortDir: "desc",
   selectedOpportunityId: null,
+  pageSize: 10,
 };
 
 export type OpportunitiesState = {
@@ -30,6 +32,7 @@ export type OppsAction =
   | { type: "view:setStage"; stage: OpportunityStage | "all" }
   | { type: "view:setSort"; sortDir: "asc" | "desc" }
   | { type: "view:select"; opportunityId: string | null }
+  | { type: "view:setPageSize"; pageSize: number }
   | { type: "opp:update"; id: string; patch: Partial<Opportunity> };
 
 export function getInitialOpportunitiesState(): OpportunitiesState {
@@ -73,6 +76,8 @@ export function opportunitiesReducer(
         ...state,
         view: { ...state.view, selectedOpportunityId: action.opportunityId },
       };
+    case "view:setPageSize":
+      return { ...state, view: { ...state.view, pageSize: action.pageSize } };
     case "opp:update": {
       const nextList = state.list.map((opp) =>
         opp.id === action.id ? { ...opp, ...action.patch } : opp
@@ -132,6 +137,8 @@ export function useOpportunitiesActions() {
       dispatch({ type: "view:select", opportunityId }),
     updateOpportunity: (id: string, patch: Partial<Opportunity>) =>
       dispatch({ type: "opp:update", id, patch }),
+    setPageSize: (pageSize: number) =>
+      dispatch({ type: "view:setPageSize", pageSize }),
   };
 }
 

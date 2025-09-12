@@ -52,4 +52,5 @@ export interface LeadsViewState {
   sortKey: SortKey;
   sortDir: SortDir;
   selectedLeadId: string | null;
+  pageSize: number;
 }

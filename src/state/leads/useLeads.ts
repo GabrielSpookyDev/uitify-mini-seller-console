@@ -38,6 +38,7 @@ export type LeadsAction =
   | { type: "view:setStatus"; status: LeadStatus | "all" }
   | { type: "view:setSort"; sortKey: SortKey; sortDir: SortDir }
   | { type: "view:select"; leadId: string | null }
+  | { type: "view:setPageSize"; pageSize: number }
   | { type: "lead:update"; id: string; patch: Partial<Lead> };
 
 // -------- Init / Reducer --------
@@ -83,6 +84,11 @@ export function leadsReducer(
       return {
         ...state,
         view: { ...state.view, selectedLeadId: action.leadId },
+      };
+    case "view:setPageSize":
+      return {
+        ...state,
+        view: { ...state.view, pageSize: action.pageSize },
       };
 
     case "lead:update": {
@@ -142,6 +148,8 @@ export function useLeadsActions() {
       dispatch({ type: "view:select", leadId }),
     updateLead: (id: string, patch: Partial<Lead>) =>
       dispatch({ type: "lead:update", id, patch }),
+    setPageSize: (pageSize: number) =>
+      dispatch({ type: "view:setPageSize", pageSize }),
 
     convertLead: (
       leadId: string,

@@ -46,6 +46,7 @@ export const DEFAULT_LEADS_VIEW_STATE: LeadsViewState = {
   sortKey: "score",
   sortDir: "desc",
   selectedLeadId: null,
+  pageSize: 20,
 };
 
 // Runtime guards (intentionally lightweight; no external deps)
@@ -78,7 +79,8 @@ function isValidLeadsViewState(
     isValidStatus(value.statusFilter) &&
     isValidSortKey(value.sortKey) &&
     isValidSortDir(value.sortDir) &&
-    (value.selectedLeadId === null || typeof value.selectedLeadId === "string")
+    (value.selectedLeadId === null || typeof value.selectedLeadId === "string") &&
+    typeof value.pageSize === "number" && value.pageSize > 0
   );
 }
 
@@ -96,6 +98,7 @@ export function saveLeadsViewState(state: LeadsViewState): void {
     sortKey: isValidSortKey(state.sortKey) ? state.sortKey : "score",
     sortDir: isValidSortDir(state.sortDir) ? state.sortDir : "desc",
     selectedLeadId: state.selectedLeadId ?? null,
+    pageSize: (typeof state.pageSize === "number" && state.pageSize > 0) ? state.pageSize : 20,
   };
   writeJson(LEADS_VIEW_KEY, sanitizedState);
 }
@@ -166,7 +169,8 @@ function isValidOpportunitiesViewState(
     typeof value.searchTerm === "string" &&
     isValidStage(value.stageFilter) &&
     (value.sortDir === "asc" || value.sortDir === "desc") &&
-    (value.selectedOpportunityId === null || typeof value.selectedOpportunityId === "string")
+    (value.selectedOpportunityId === null || typeof value.selectedOpportunityId === "string") &&
+    typeof value.pageSize === "number" && value.pageSize > 0
   );
 }
 
@@ -181,6 +185,7 @@ export function saveOpportunitiesViewState(state: OpportunitiesViewState): void 
     stageFilter: isValidStage(state.stageFilter) ? state.stageFilter : "all",
     sortDir: (state.sortDir === "asc" || state.sortDir === "desc") ? state.sortDir : "desc",
     selectedOpportunityId: state.selectedOpportunityId ?? null,
+    pageSize: (typeof state.pageSize === "number" && state.pageSize > 0) ? state.pageSize : 10,
   };
   writeJson(OPPORTUNITIES_VIEW_KEY, sanitizedState);
 }

@@ -1,14 +1,16 @@
 import { memo, useMemo, useState } from "react";
 import { motion } from "motion/react";
-import { useLeadsActions, useVisibleLeads } from "@/state/leads/useLeads";
+import { useLeadsActions, useVisibleLeads, useLeadsState } from "@/state/leads/useLeads";
 import Pagination from "@/components/ui/Pagination";
 import Badge from "@/components/ui/Badge";
 import getTone from "@/lib/getTone";
 
 export default function LeadsTable() {
   const allLeads = useVisibleLeads();
+  const { view } = useLeadsState();
+  const { setPageSize } = useLeadsActions();
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const pageSize = view.pageSize;
 
   const total = allLeads.length;
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
