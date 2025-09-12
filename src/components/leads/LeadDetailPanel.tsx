@@ -157,7 +157,7 @@ function PanelContent({
       footer={
         <>
           <Button
-            variant="secondary"
+            variant="danger"
             onClick={handleCancel}
             disabled={pending !== "idle"}
           >

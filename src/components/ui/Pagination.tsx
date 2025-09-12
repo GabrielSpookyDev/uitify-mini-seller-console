@@ -1,5 +1,5 @@
 import Select from "@/components/ui/Select";
-import IconButton from "@/components/ui/IconButton";
+import Button from "@/components/ui/Button";
 import {
   ChevronLeft,
   ChevronRight,
@@ -65,12 +65,14 @@ export default function Pagination({
           className="inline-flex items-center gap-1.5"
           aria-label="Pagination"
         >
-          <IconButton
+          <Button
+            variant="secondary"
             disabled={!canPrev}
             onClick={() => goToPage(1)}
             icon={ChevronsLeft}
           />
-          <IconButton
+          <Button
+            variant="secondary"
             disabled={!canPrev}
             onClick={() => goToPage(page - 1)}
             icon={ChevronLeft}
@@ -80,12 +82,14 @@ export default function Pagination({
             Page <span className="font-medium">{page}</span> / {totalPages}
           </span>
 
-          <IconButton
+          <Button
+            variant="secondary"
             disabled={!canNext}
             onClick={() => goToPage(page + 1)}
             icon={ChevronRight}
           />
-          <IconButton
+          <Button
+            variant="secondary"
             disabled={!canNext}
             onClick={() => goToPage(totalPages)}
             icon={ChevronsRight}

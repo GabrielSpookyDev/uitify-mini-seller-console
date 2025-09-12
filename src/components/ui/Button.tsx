@@ -1,8 +1,15 @@
 import React from "react";
+import { type LucideIcon } from "lucide-react";
 
 type Variant = "primary" | "secondary" | "ghost" | "danger";
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
+  icon?: LucideIcon;
+  label?: string;
+  size?: number;
+  strokeWidth?: number;
+  reverseLabel?: boolean;
 };
 
 const styles: Record<Variant, string> = {
@@ -22,18 +29,31 @@ const styles: Record<Variant, string> = {
 
 export default function Button({
   variant = "primary",
+  icon: Icon,
+  label,
+  size = 20,
+  strokeWidth = 2,
+  reverseLabel = false,
   className = "",
+  disabled,
   ...props
-}: Props) {
+}: Readonly<ButtonProps>) {
   return (
     <button
       {...props}
+      disabled={disabled}
       className={[
         "inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-medium",
-        "transition-colors focus-visible:outline-none focus-visible:ring-2 hover:cursor-pointer",
+        "transition-colors focus-visible:outline-none focus-visible:ring-2",
+        disabled ? "cursor-not-allowed opacity-50" : "hover:cursor-pointer",
+        reverseLabel ? "flex-row-reverse" : "flex-row",
         styles[variant],
         className,
       ].join(" ")}
-    />
+    >
+      {Icon && <Icon size={size} strokeWidth={strokeWidth} />}
+      {label && <span>{label}</span>}
+      {!Icon && !label && props.children}
+    </button>
   );
 }

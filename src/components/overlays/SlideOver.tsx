@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import { X } from "lucide-react";
 
 type SlideOverProps = {
   title: React.ReactNode;
@@ -91,9 +92,12 @@ export default function SlideOver({
             >
               {title}
             </div>
-            <Button variant="ghost" onClick={onClose} aria-label="Close panel">
-              ✕
-            </Button>
+            <Button
+              variant="ghost"
+              icon={X}
+              onClick={onClose}
+              aria-label="Close panel"
+            />
           </div>
 
           <div className="flex-1 overflow-auto px-4 py-3">{children}</div>

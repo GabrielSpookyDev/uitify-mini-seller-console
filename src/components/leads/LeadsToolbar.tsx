@@ -3,6 +3,7 @@ import { useLeadsActions, useLeadsState } from "@/state/leads/useLeads";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
+import { ArrowUp, ArrowDown } from "lucide-react";
 import type { LeadStatus } from "@/types/types";
 
 const STATUS_OPTIONS: Array<LeadStatus | "all"> = [
@@ -20,12 +21,16 @@ export default function LeadsToolbar() {
 
   const [searchInput, setSearchInput] = useState(view.searchTerm);
   const debounceRef = useRef<number | null>(null);
+  const debounceValue = 250;
 
   useEffect(() => setSearchInput(view.searchTerm), [view.searchTerm]);
 
   useEffect(() => {
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
-    debounceRef.current = window.setTimeout(() => setSearch(searchInput), 250);
+    debounceRef.current = window.setTimeout(
+      () => setSearch(searchInput),
+      debounceValue
+    );
     return () => {
       if (debounceRef.current) window.clearTimeout(debounceRef.current);
     };
@@ -68,14 +73,13 @@ export default function LeadsToolbar() {
         </Select>
 
         <Button
-          type="button"
           onClick={toggleSort}
+          label="Score"
           variant="secondary"
-          title="Toggle sort by score"
-        >
-          Score {view.sortDir === "desc" ? "↓" : "↑"}{" "}
-          {/* TODO: Update this into better Chevron Icons */}
-        </Button>
+          reverseLabel
+          icon={view.sortDir === "desc" ? ArrowDown : ArrowUp}
+          size={16}
+        />
       </div>
     </div>
   );
