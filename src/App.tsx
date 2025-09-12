@@ -1,5 +1,7 @@
+import { useMemo } from "react";
 import LeadsProvider from "@/state/leads/LeadsProvider";
 import { useLeadsState } from "@/state/leads/useLeads";
+import { AnimatePresence } from "motion/react";
 import Header from "@/components/layout/Header";
 import Card from "@/components/ui/Card";
 import LeadsToolbar from "@/components/leads/LeadsToolbar";
@@ -14,7 +16,11 @@ import {
 import OpportunitiesProvider from "@/state/opps/oppsProvider";
 
 function AppContent() {
-  const { load } = useLeadsState();
+  const { load, view, leads } = useLeadsState();
+  const selectedLead = useMemo(
+    () => leads.find((lead) => lead.id === view.selectedLeadId) || null,
+    [leads, view.selectedLeadId]
+  );
 
   if (load.kind === "loading" || load.kind === "idle") {
     return (
@@ -89,7 +95,11 @@ function AppContent() {
           </Card>
         </aside>
       </section>
-      <LeadDetailPanel />
+      <AnimatePresence>
+        {selectedLead && (
+          <LeadDetailPanel key={selectedLead.id} selectedLead={selectedLead} />
+        )}
+      </AnimatePresence>
     </main>
   );
 }
