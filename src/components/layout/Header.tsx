@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useLeadsState, useVisibleLeads } from "@/state/leads/useLeads";
-import { useOpportunitiesActions, useOpportunitiesState } from "@/state/opps/useOpps";
+import {
+  useOpportunitiesActions,
+  useOpportunitiesState,
+} from "@/state/opps/useOpps";
 import { clearLeads } from "@/lib/storage";
 import Button from "@/components/ui/Button";
+import Modal from "@/components/ui/Modal";
 import { RotateCcw } from "lucide-react";
 
 function StatChip({
@@ -23,15 +27,17 @@ export default function Header() {
   const { list: opportunities } = useOpportunitiesState();
   const { reset } = useOpportunitiesActions();
   const [isResetting, setIsResetting] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
 
-  async function handleReset() {
-    if (!confirm('Reset all data? This will clear all opportunities and lead changes, returning to the original data. This cannot be undone.')) {
-      return;
-    }
+  function handleResetClick() {
+    setShowResetModal(true);
+  }
+
+  function handleResetConfirm() {
+    setShowResetModal(false);
     setIsResetting(true);
     reset();
     clearLeads();
-    // Reload page to get fresh data from JSON
     setTimeout(() => window.location.reload(), 500);
   }
 
@@ -58,18 +64,43 @@ export default function Header() {
             <StatChip label="Filtered Leads" value={visibleLeads.length} />
             <StatChip label="Opportunities" value={opportunities.length} />
             <Button
-              variant="secondary"
               icon={RotateCcw}
-              onClick={handleReset}
+              onClick={handleResetClick}
               disabled={isResetting}
               className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-              title="Reset all opportunities"
-            >
-              {isResetting ? 'Resetting...' : 'Reset'}
-            </Button>
+              title="Reset all data"
+              label="Reset Data"
+            />
           </div>
         </div>
       </div>
+
+      <Modal
+        open={showResetModal}
+        onClose={() => setShowResetModal(false)}
+        title="Reset All Data"
+        footer={
+          <>
+            <Button
+              variant="secondary"
+              onClick={() => setShowResetModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={handleResetConfirm}>
+              Reset Everything
+            </Button>
+          </>
+        }
+      >
+        <p className="text-zinc-600">
+          This will clear all opportunities and lead changes, returning to the
+          original data.
+        </p>
+        <p className="text-zinc-600 mt-2 font-medium">
+          This action cannot be undone.
+        </p>
+      </Modal>
     </header>
   );
 }
