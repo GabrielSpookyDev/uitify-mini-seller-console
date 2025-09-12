@@ -95,15 +95,13 @@ function PanelContent({
     setErrorMsg("");
     const previous = { ...lead };
 
-    // Optimistically mark converted + normalized email
-    updateLead(lead.id, { status: "converted", email: finalEmail });
-
     try {
       await simulateNetworkLatency({
         minDelayMs: 500,
         maxDelayMs: 900,
         failureProbability: 0.1,
       });
+      
       const opp: Opportunity = {
         id: generateUuidV4(),
         name: lead.name,
@@ -113,7 +111,11 @@ function PanelContent({
         leadId: lead.id,
         createdAt: new Date().toISOString(),
       };
+      
+      // Add opportunity first, then update lead
       addOpportunity(opp);
+      updateLead(lead.id, { status: "converted", email: finalEmail });
+      
       setPending("idle");
       onClose();
     } catch {

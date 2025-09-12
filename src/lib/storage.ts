@@ -3,10 +3,14 @@ import type {
   LeadStatus,
   SortDir,
   SortKey,
+  Lead,
+  Opportunity,
 } from "@/types/types";
 
 const STORAGE_NAMESPACE = "mini-seller-console";
 const LEADS_VIEW_KEY = `${STORAGE_NAMESPACE}:leads:view:v1`;
+const LEADS_KEY = `${STORAGE_NAMESPACE}:leads:v1`;
+const OPPORTUNITIES_KEY = `${STORAGE_NAMESPACE}:opportunities:v1`;
 
 // ---------- Safe JSON helpers ----------
 
@@ -96,6 +100,42 @@ export function saveLeadsViewState(state: LeadsViewState): void {
 export function clearLeadsViewState(): void {
   try {
     localStorage.removeItem(LEADS_VIEW_KEY);
+  } catch {
+    // Ignore storage errors.
+  }
+}
+
+// ---------- Leads persistence ----------
+
+export function loadLeads(): Lead[] {
+  return readJson<Lead[]>(LEADS_KEY, []);
+}
+
+export function saveLeads(leads: Lead[]): void {
+  writeJson(LEADS_KEY, leads);
+}
+
+export function clearLeads(): void {
+  try {
+    localStorage.removeItem(LEADS_KEY);
+  } catch {
+    // Ignore storage errors.
+  }
+}
+
+// ---------- Opportunities persistence ----------
+
+export function loadOpportunities(): Opportunity[] {
+  return readJson<Opportunity[]>(OPPORTUNITIES_KEY, []);
+}
+
+export function saveOpportunities(opportunities: Opportunity[]): void {
+  writeJson(OPPORTUNITIES_KEY, opportunities);
+}
+
+export function clearOpportunities(): void {
+  try {
+    localStorage.removeItem(OPPORTUNITIES_KEY);
   } catch {
     // Ignore storage errors.
   }

@@ -12,6 +12,8 @@ import {
   DEFAULT_LEADS_VIEW_STATE,
   loadLeadsViewState,
   saveLeadsViewState,
+  loadLeads,
+  saveLeads,
 } from "@/lib/storage";
 import { generateUuidV4 } from "@/lib/id";
 
@@ -26,7 +28,6 @@ export interface LeadsState {
   load: LoadState;
   leads: Lead[];
   view: LeadsViewState;
-  opportunities: Opportunity[];
 }
 
 export type LeadsAction =
@@ -37,17 +38,16 @@ export type LeadsAction =
   | { type: "view:setStatus"; status: LeadStatus | "all" }
   | { type: "view:setSort"; sortKey: SortKey; sortDir: SortDir }
   | { type: "view:select"; leadId: string | null }
-  | { type: "lead:update"; id: string; patch: Partial<Lead> }
-  | { type: "opportunity:add"; payload: Opportunity };
+  | { type: "lead:update"; id: string; patch: Partial<Lead> };
 
 // -------- Init / Reducer --------
 export function getInitialLeadsState(): LeadsState {
-  const persisted = loadLeadsViewState();
+  const persistedView = loadLeadsViewState();
+  const persistedLeads = loadLeads();
   return {
-    load: { kind: "idle" },
-    leads: [],
-    view: persisted ?? DEFAULT_LEADS_VIEW_STATE,
-    opportunities: [],
+    load: persistedLeads.length > 0 ? { kind: "loaded" } : { kind: "idle" },
+    leads: persistedLeads,
+    view: persistedView ?? DEFAULT_LEADS_VIEW_STATE,
   };
 }
 
@@ -92,12 +92,6 @@ export function leadsReducer(
       return { ...state, leads: nextLeads };
     }
 
-    case "opportunity:add":
-      return {
-        ...state,
-        opportunities: [action.payload, ...state.opportunities],
-      };
-
     default:
       return state;
   }
@@ -106,6 +100,11 @@ export function leadsReducer(
 // Persist view changes (call from Provider effect)
 export function persistLeadsView(view: LeadsViewState) {
   saveLeadsViewState(view);
+}
+
+// Persist leads changes
+export function persistLeads(leads: Lead[]) {
+  saveLeads(leads);
 }
 
 // -------- Context + Hooks (no components exported) --------
@@ -127,9 +126,7 @@ export function useLeadsState() {
   return useLeadsContextStrict().state;
 }
 
-export function useOpportunities(): Opportunity[] {
-  return useLeadsContextStrict().state.opportunities;
-}
+
 
 export function useLeadsActions() {
   const { dispatch, state } = useLeadsContextStrict();
@@ -149,7 +146,8 @@ export function useLeadsActions() {
     convertLead: (
       leadId: string,
       amount?: number,
-      stage: OpportunityStage = "prospecting"
+      stage: OpportunityStage = "prospecting",
+      onOpportunityCreated?: (opportunity: Opportunity) => void
     ) => {
       const lead = state.leads.find((lead) => lead.id === leadId);
       if (!lead) return;
@@ -164,7 +162,7 @@ export function useLeadsActions() {
         createdAt: new Date().toISOString(),
       };
 
-      dispatch({ type: "opportunity:add", payload: opp });
+      onOpportunityCreated?.(opp);
       dispatch({
         type: "lead:update",
         id: lead.id,

@@ -1,8 +1,9 @@
-import React, { useMemo, useReducer } from "react";
+import React, { useEffect, useMemo, useReducer } from "react";
 import {
   OpportunitiesContext,
-  initialOpportunitiesState,
+  getInitialOpportunitiesState,
   opportunitiesReducer,
+  persistOpportunities,
 } from "@/state/opps/useOpps";
 
 type Props = { children: React.ReactNode };
@@ -10,8 +11,14 @@ type Props = { children: React.ReactNode };
 export default function OpportunitiesProvider({ children }: Readonly<Props>) {
   const [state, dispatch] = useReducer(
     opportunitiesReducer,
-    initialOpportunitiesState
+    undefined,
+    getInitialOpportunitiesState
   );
+
+  useEffect(() => {
+    persistOpportunities(state.list);
+  }, [state.list]);
+
   const value = useMemo(() => ({ state, dispatch }), [state]);
   return (
     <OpportunitiesContext.Provider value={value}>

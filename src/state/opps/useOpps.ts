@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import type { Opportunity } from "@/types/types";
+import { loadOpportunities, saveOpportunities, clearOpportunities } from "@/lib/storage";
 
 export type OpportunitiesState = {
   list: Opportunity[];
@@ -7,7 +8,14 @@ export type OpportunitiesState = {
 
 export type OppsAction =
   | { type: "opps:add"; payload: Opportunity }
-  | { type: "opps:clear" }; // handy for tests/demos
+  | { type: "opps:load"; payload: Opportunity[] }
+  | { type: "opps:clear" }
+  | { type: "opps:reset" };
+
+export function getInitialOpportunitiesState(): OpportunitiesState {
+  const persisted = loadOpportunities();
+  return { list: persisted };
+}
 
 const initialState: OpportunitiesState = { list: [] };
 
@@ -18,7 +26,11 @@ export function opportunitiesReducer(
   switch (action.type) {
     case "opps:add":
       return { ...state, list: [action.payload, ...state.list] };
+    case "opps:load":
+      return { ...state, list: action.payload };
     case "opps:clear":
+      return { ...state, list: [] };
+    case "opps:reset":
       return { ...state, list: [] };
     default:
       return state;
@@ -53,10 +65,22 @@ export function useOpportunitiesActions() {
     add(opportunity: Opportunity) {
       dispatch({ type: "opps:add", payload: opportunity });
     },
+    load(opportunities: Opportunity[]) {
+      dispatch({ type: "opps:load", payload: opportunities });
+    },
     clear() {
       dispatch({ type: "opps:clear" });
     },
+    reset() {
+      dispatch({ type: "opps:reset" });
+      clearOpportunities();
+    },
   };
+}
+
+// Persist opportunities changes
+export function persistOpportunities(opportunities: Opportunity[]) {
+  saveOpportunities(opportunities);
 }
 
 export { OpportunitiesContext, initialState as initialOpportunitiesState };
