@@ -10,9 +10,8 @@ import {
   HeroSkeleton,
   ToolbarSkeleton,
   TableSkeleton,
-  Skeleton,
 } from "@/components/ui/Skeleton";
-import OpportunitiesProvider from "./state/opps/oppsProvider";
+import OpportunitiesProvider from "@/state/opps/oppsProvider";
 
 function AppContent() {
   const { load } = useLeadsState();
@@ -21,20 +20,14 @@ function AppContent() {
     return (
       <main className="min-h-screen bg-gradient-to-b from-zinc-50 to-white">
         <HeroSkeleton />
-        <section className="mx-auto max-w-6xl px-4 py-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-3">
+        <section className="mx-auto max-w-6xl px-4 py-6">
+          <div className="space-y-3">
             <div className="rounded-2xl border border-zinc-200 bg-white/70 p-4">
               <ToolbarSkeleton />
               <div className="mt-3" />
-              <TableSkeleton rows={8} />
+              <TableSkeleton rows={12} />
             </div>
           </div>
-          <aside className="lg:col-span-1">
-            <div className="rounded-2xl border border-zinc-200 bg-white/70 p-4">
-              <Skeleton className="h-5 w-32 mb-2" />
-              <Skeleton className="h-4 w-48" />
-            </div>
-          </aside>
         </section>
       </main>
     );
