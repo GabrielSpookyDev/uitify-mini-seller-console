@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { useOpportunitiesState } from "@/state/opps/useOpps";
 
 export default function OpportunitiesTable() {
@@ -28,7 +29,15 @@ export default function OpportunitiesTable() {
           </thead>
           <tbody className="divide-y divide-zinc-100">
             {list.map((opp) => (
-              <tr key={opp.id} className="odd:bg-white even:bg-zinc-50/50">
+              <motion.tr
+                key={opp.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="odd:bg-white even:bg-zinc-50/50"
+              >
                 <td className="px-3 py-2 text-sm font-medium text-zinc-900">
                   {opp.name}
                 </td>
@@ -47,7 +56,7 @@ export default function OpportunitiesTable() {
                 <td className="px-3 py-2 text-sm text-zinc-700">
                   {new Date(opp.createdAt).toLocaleString()}
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>

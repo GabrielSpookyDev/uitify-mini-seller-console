@@ -1,4 +1,5 @@
 import { memo, useMemo, useState } from "react";
+import { motion } from "motion/react";
 import { useLeadsActions, useVisibleLeads } from "@/state/leads/useLeads";
 import Pagination from "@/components/ui/Pagination";
 import Badge from "@/components/ui/Badge";
@@ -81,7 +82,12 @@ const LeadRow = memo(function LeadRow({
   const tone = getTone(lead.status);
 
   return (
-    <tr
+    <motion.tr
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       className="odd:bg-white even:bg-zinc-50/50 hover:bg-indigo-50/50 cursor-pointer"
       onClick={() => selectLead(lead.id)}
       aria-label={`Open details for ${lead.name}`}
@@ -99,6 +105,6 @@ const LeadRow = memo(function LeadRow({
       <td className="px-3 py-2">
         <Badge tone={tone}>{lead.status}</Badge>
       </td>
-    </tr>
+    </motion.tr>
   );
 });
