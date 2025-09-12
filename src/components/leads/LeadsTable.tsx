@@ -81,6 +81,12 @@ const LeadRow = memo(function LeadRow({
   const { selectLead } = useLeadsActions();
   const tone = getTone(lead.status);
 
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return "text-green-600";
+    if (score >= 70) return "text-yellow-600";
+    return "text-red-600";
+  };
+
   return (
     <motion.tr
       layout
@@ -101,7 +107,11 @@ const LeadRow = memo(function LeadRow({
       <td className="px-3 py-2 text-xs uppercase tracking-wide text-zinc-500">
         {lead.source}
       </td>
-      <td className="px-3 py-2 text-sm tabular-nums">{lead.score}</td>
+      <td className="px-3 py-2 text-sm tabular-nums">
+        <span className={`font-medium ${getScoreColor(lead.score)}`}>
+          {lead.score}
+        </span>
+      </td>
       <td className="px-3 py-2">
         <Badge tone={tone}>{lead.status}</Badge>
       </td>

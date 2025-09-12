@@ -4,7 +4,6 @@ import Card from "@/components/ui/Card";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Button from "@/components/ui/Button";
-import Badge from "@/components/ui/Badge";
 import { X, Mail, User, Tag, DollarSign } from "lucide-react";
 import { useLeadsActions } from "@/state/leads/useLeads";
 import {
@@ -15,7 +14,6 @@ import {
 import { simulateNetworkLatency } from "@/lib/delay";
 import { generateUuidV4 } from "@/lib/id";
 import { useOpportunitiesActions } from "@/state/opps/useOpps";
-import getTone from "@/lib/getTone";
 import type { Lead, LeadStatus, Opportunity } from "@/types/types";
 
 const STATUS_OPTIONS: Array<LeadStatus> = [
@@ -144,8 +142,6 @@ export default function LeadDetailPanel({
       setPending("idle");
     }
   }
-
-  const tone = getTone(status);
 
   return (
     <motion.div
@@ -305,7 +301,6 @@ export default function LeadDetailPanel({
                         </option>
                       ))}
                     </Select>
-                    <Badge tone={tone}>{status}</Badge>
                   </div>
                 </div>
               </div>
@@ -370,11 +365,11 @@ export default function LeadDetailPanel({
                     : "Convert this lead into an opportunity"
                 }
               >
-                {pending === "converting"
-                  ? "Converting…"
-                  : selectedLead.status === "converted"
-                  ? "Already Converted"
-                  : "Convert Lead"}
+                {(() => {
+                  if (pending === "converting") return "Converting…";
+                  if (selectedLead.status === "converted") return "Already Converted";
+                  return "Convert Lead";
+                })()}
               </Button>
             </div>
           </div>
